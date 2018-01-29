@@ -1,11 +1,11 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <helper_cuda.h>
 #define SIZE 1024
 
 //CUDA enabled vectorAdd
-__global__ void VectorAdd(int *a, int *b, int *c, int n)
+__global__ void vectorAdd(int *a, int *b, int *c, int n)
 {
 	//int i;
 
@@ -18,7 +18,7 @@ __global__ void VectorAdd(int *a, int *b, int *c, int n)
 }
 
 //Normal vectorADD
-void VectorAdd(int *a, int *b, int *c, int n)
+void classicVectorAdd(int *a, int *b, int *c, int n)
 {
 	int i;
 
@@ -41,9 +41,9 @@ int main()
 	d = (int *)malloc(SIZE*sizeof(int));
 
 	//allocate GPU
-	cudaMalloc(&d_a, SIZE*sizeof(int));
-	cudaMalloc(&d_b, SIZE*sizeof(int));
-	cudaMalloc(&d_c, SIZE*sizeof(int));
+	checkCudaErrors(cudaMalloc(&d_a, SIZE*sizeof(int)));
+	checkCudaErrors(cudaMalloc(&d_b, SIZE*sizeof(int)));
+	checkCudaErrors(cudaMalloc(&d_c, SIZE*sizeof(int)));
 
 	//initialize CPU
 	for (int i = 0; i < SIZE; ++i)
@@ -54,15 +54,15 @@ int main()
 	}
 
 	//initialize GPU
-	cudaMemcpy(d_a, a, SIZE*sizeof(int), cudaMemcpyHostToDevice);
-	cudaMemcpy(d_b, b, SIZE*sizeof(int), cudaMemcpyHostToDevice);
-	cudaMemcpy(d_c, c, SIZE*sizeof(int), cudaMemcpyHostToDevice);
+	checkCudaErrors(cudaMemcpy(d_a, a, SIZE*sizeof(int), cudaMemcpyHostToDevice));
+	checkCudaErrors(cudaMemcpy(d_b, b, SIZE*sizeof(int), cudaMemcpyHostToDevice));
+	checkCudaErrors(cudaMemcpy(d_c, c, SIZE*sizeof(int), cudaMemcpyHostToDevice));
 
 
 	//<<<NOfBlocks,ThreadsPerBlock>>>
-	VectorAdd<<<1, SIZE>>>(d_a,d_b,d_c, SIZE);
+	vectorAdd<<<1, SIZE>>>(d_a,d_b,d_c, SIZE);
 
-	VectorAdd (a, b, c, SIZE);
+	classicVectorAdd (a, b, c, SIZE);
 
 	//recover result from GPU memory
 	cudaMemcpy(d, d_c, SIZE*sizeof(int), cudaMemcpyDeviceToHost);
@@ -77,9 +77,9 @@ int main()
 	free(d);
 
 	//free CUDA mem
-	cudaFree(d_a);
-	cudaFree(d_b);
-	cudaFree(d_c);
+	checkCudaErrors(cudaFree(d_a));
+	checkCudaErrors(cudaFree(d_b));
+	checkCudaErrors(cudaFree(d_c));
 
 	return 0;
 }
