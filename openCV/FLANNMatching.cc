@@ -5,12 +5,14 @@
 #include <opencv2/videoio/videoio_c.h>
 #include <opencv2/features2d.hpp>
 #include <opencv2/xfeatures2d.hpp>
+#include <chrono>
 
 #include <iostream>
 #include <stdio.h>
 
 using namespace std;
 using namespace cv;
+using namespace std::chrono;
 
 
 
@@ -26,9 +28,6 @@ vector<KeyPoint> kptsImg1;
 vector<KeyPoint> kptsImg2;
 
 int fastThreshold = 128;
-
-
-
 
 
 
@@ -99,9 +98,6 @@ void extractORBDescriptors(vector< KeyPoint > kpts, Mat img, Mat& desc)
 }
 
 
-
-
-
 int main( int argc, const char** argv )
 {
     VideoCapture cap;
@@ -115,93 +111,87 @@ int main( int argc, const char** argv )
     fprintf(stdout, "Press Enter to take a shot\n");
     for(;;)
     {
-          Mat frame;
-          cap >> frame;
-          if( frame.empty() ) break; // end of video stream
+      Mat frame;
+      cap >> frame;
+      if( frame.empty() ) break; // end of video stream
 
-          //WindowName, mat
-          imshow("First Image", frame);
+      imshow("First Image", frame);
 
-          //imshow debe ir seguido de waitKey, que mostrara la imagen durante N ms, en este caso 10 . waitkey(0) mostrara indefinidamente hasta que se presione alguna key
-          // stop capturing by pressing enter
-          if( waitKey(10) == 13 ){
-            image1 = frame;
-            break;
-          }
+      if( waitKey(10) == 13 ){
+        image1 = frame;
+        break;
+      }
     }
 
-    fprintf(stdout, "Move the camera around and take a different angle of the same shot \n");
-
-    for(;;)
-    {
-          Mat frame;
-          cap >> frame;
-          if( frame.empty() ) break; // end of video stream
-
-          //WindowName, mat
-          imshow("Second Image", frame);
-
-          // stop capturing by pressing Enter
-          if( waitKey(10) == 13 ){
-            image2 = frame;
-            break;
-          }
-    }
 
     int i = extractORBKeypoints(kptsImg1,image1);
     extractORBDescriptors(kptsImg1,image1,img1Descriptors);
     fprintf(stdout,"Number of Keypoints [img1] %d \n",i);
 
-    int i2 = extractORBKeypoints(kptsImg2,image2);
-    extractORBDescriptors(kptsImg2,image2,img2Descriptors);
-    fprintf(stdout,"Number of Keypoints [img2] %d \n",i2);
+    for(;;)
+    {
+
+      Mat frame;
+      cap >> frame;
+      if( frame.empty() ) break;
+
+      image2 = frame;
 
 
-    FlannBasedMatcher matcher;
-    vector<DMatch> matches;
-    matcher.match( img1Descriptors , img2Descriptors, matches );
+      extractORBKeypoints(kptsImg2,image2);
+      extractORBDescriptors(kptsImg2,image2,img2Descriptors);
+
+
+      FlannBasedMatcher matcher;
+      vector<DMatch> matches;
+
+      auto start = high_resolution_clock::now();
+
+      matcher.match( img1Descriptors , img2Descriptors, matches );
+
+      auto elapsed = high_resolution_clock::now() - start;
+      long long micros = duration_cast<std::chrono::microseconds>(elapsed).count();
+    
+      fprintf(stdout,"FLANN Matching takes %lld uS\n",micros);
+
+
+
+      double max_dist = 0; double min_dist = 100;
+      //-- Keypoint Distance
+      for( int i = 0; i < img1Descriptors.rows; i++ )
+      { double dist = matches[i].distance;
+        if( dist < min_dist ) min_dist = dist;
+        if( dist > max_dist ) max_dist = dist;
+      }
+
+
+      // Draw only matches whose distance is less than 2*min_dist
+      std::vector< DMatch > good_matches;
+      for( int i = 0; i < img1Descriptors.rows; i++ )
+      { if( matches[i].distance <= max(2*min_dist, 0.02) )
+        { good_matches.push_back( matches[i]); }
+      }
+
 
 ///////////////////////////////////////////////////////////////////
-//https://docs.opencv.org/3.1.0/d5/d6f/tutorial_feature_flann_matcher.html
 
 
-  double max_dist = 0; double min_dist = 100;
-  //-- Quick calculation of max and min distances between keypoints
-  for( int i = 0; i < img1Descriptors.rows; i++ )
-  { double dist = matches[i].distance;
-    if( dist < min_dist ) min_dist = dist;
-    if( dist > max_dist ) max_dist = dist;
-  }
-  printf("-- Max dist : %f \n", max_dist );
-  printf("-- Min dist : %f \n", min_dist );
-
-
-
-  //-- Draw only "good" matches (i.e. whose distance is less than 2*min_dist,
-  //-- or a small arbitary value ( 0.02 ) in the event that min_dist is very
-  //-- small)
-  //-- PS.- radiusMatch can also be used here.
-  std::vector< DMatch > good_matches;
-  for( int i = 0; i < img1Descriptors.rows; i++ )
-  { if( matches[i].distance <= max(2*min_dist, 0.02) )
-    { good_matches.push_back( matches[i]); }
-  }
-
-
-///////////////////////////////////////////////////////////////////
-
-
-    Mat img_matches;
-    drawMatches( image1, kptsImg1, image2, kptsImg2,
-                 good_matches, img_matches, Scalar::all(-1), Scalar::all(-1),
+      Mat img_matches;
+      drawMatches( image1, kptsImg1, image2, kptsImg2,
+                   good_matches, img_matches, Scalar::all(-1), Scalar::all(-1),
                  vector<char>(), DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS );
-    //-- Show detected matches
-    imshow( "Matches", img_matches );
-    waitKey(0);
+
+      //-- Show detected matches
+      imshow( "Matches", img_matches );
+
+      // stop capturing by pressing Enter
+      if( waitKey(10) == 13 ){
+        break;
+      }
+        
+  } 
 
 
-    // the camera will be closed automatically upon exit
-    // cap.close();
     return 0;
 }
 

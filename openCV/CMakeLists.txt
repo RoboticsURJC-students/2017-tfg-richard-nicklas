@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 2.8)
+project( verySimpleCV )
+find_package( OpenCV REQUIRED )
+include_directories( ${OpenCV_INCLUDE_DIRS} )
+add_executable( verySimpleCV simpleCV.cpp)
+SET(GCC_COVERAGE_COMPILE_FLAGS "-std=c++11")
+add_definitions(${GCC_COVERAGE_COMPILE_FLAGS})
+target_link_libraries( verySimpleCV ${OpenCV_LIBS} )
