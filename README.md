@@ -5,6 +5,7 @@
 Week 1:
 
   FPGA:
+  
     Verilog HDL:
     
       -From Intel FPGA youtube channel(https://www.youtube.com/channel/UC0wEPiFb0J6AZZ3oPXRoRpw): 
