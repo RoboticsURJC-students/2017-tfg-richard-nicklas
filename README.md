@@ -6,13 +6,14 @@ Week 1:
 
   FPGA:
   
-    Verilog HDL:
+    FPGAs and Verilog HDL:
     
-      -From Intel FPGA youtube channel(https://www.youtube.com/channel/UC0wEPiFb0J6AZZ3oPXRoRpw): 
-        Verilog HDL Basics (https://www.youtube.com/watch?v=PJGvZSlsLKs):
+      From Intel FPGA youtube channel(https://www.youtube.com/channel/UC0wEPiFb0J6AZZ3oPXRoRpw): 
+        -Verilog HDL Basics (https://www.youtube.com/watch?v=PJGvZSlsLKs):
           Brief overview of Verilog structure, terminology and syntax.
-      -
-      
+        -How to Begin a Simple FPGA Design(https://www.youtube.com/watch?v=bwoyQ_RnaiA)
+     
+     
     Simmulation:
     
       -List of HDL simulators(https://en.wikipedia.org/wiki/List_of_HDL_simulators)(including Open-Source):
