@@ -40,6 +40,14 @@ Week 1:
 
         
   Image Processing:
-  
 
-    
+      https://en.wikipedia.org/wiki/Mathematical_morphology
+      https://en.wikipedia.org/wiki/Digital_image_processing
+
+      Masks:
+
+      https://en.wikipedia.org/wiki/Kernel_(image_processing)
+
+      Convolucion
+      https://www.allaboutcircuits.com/technical-articles/two-dimensional-convolution-in-image-processing/
+
