@@ -12,7 +12,11 @@ Week 1:
         -Verilog HDL Basics (https://www.youtube.com/watch?v=PJGvZSlsLKs):
           Brief overview of Verilog structure, terminology and syntax.
         -How to Begin a Simple FPGA Design(https://www.youtube.com/watch?v=bwoyQ_RnaiA)
-     
+       
+      From Synopsys youtube channel(https://www.youtube.com/channel/UCUiwwDJdlOIILWWCjPKLb9Q)
+        SystemVerilog & UVM
+        -Intro (https://www.youtube.com/watch?v=igYsB_sKeNc)
+        -UVM Basics: (https://www.youtube.com/watch?v=WEA4Ds1WAh4)
      
     Simmulation:
     
@@ -23,6 +27,7 @@ Week 1:
 
           Free:
             --EDA Playground(https://www.edaplayground.com/): Online IDE
+              Nice examples like "UVM Hello World Tutorial" https://www.youtube.com/watch?v=Qn6SvG-Kya0
 
           Free & Open-source:
             Found two interesting solutions
