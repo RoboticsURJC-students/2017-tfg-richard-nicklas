@@ -2,7 +2,6 @@
 
 
 
-Week 1:
 
   FPGA:
   
@@ -19,7 +18,9 @@ Week 1:
         -UVM Basics: (https://www.youtube.com/watch?v=WEA4Ds1WAh4)
      
     Simmulation:
-    
+                
+      -Usefull info on testbenches http://www.drdobbs.com/embedded-systems/easy-verilog-test-benches/240166891
+ 
       -List of HDL simulators(https://en.wikipedia.org/wiki/List_of_HDL_simulators)(including Open-Source):
       
           Commercial:
@@ -28,6 +29,8 @@ Week 1:
           Free:
             --EDA Playground(https://www.edaplayground.com/): Online IDE
               Nice examples like "UVM Hello World Tutorial" https://www.youtube.com/watch?v=Qn6SvG-Kya0
+              
+              
 
           Free & Open-source:
             Found two interesting solutions
