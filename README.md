@@ -60,6 +60,7 @@ Convolution
 https://www.allaboutcircuits.com/technical-articles/two-dimensional-convolution-in-image-processing/
 
 
+# Log
 
 After considering multiple options, I finally decided to rely on the EDAplayground online IDE and testbench to develop and test my first verilog modules. EDAplayground provides multiple advantages and a versatile development environment that
 for a while was enough to fit the early projects needs, but soon enough I met with some shortcomings that forced me to leave the platform and transition to a real FPGA.
