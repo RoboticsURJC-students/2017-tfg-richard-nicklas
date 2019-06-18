@@ -66,8 +66,7 @@ After considering multiple options, I finally decided to rely on the EDAplaygrou
 for a while was enough to fit the early projects needs, but soon enough I met with some shortcomings that forced me to leave the platform and transition to a real FPGA.
 
 
-The project is divided in Chapters with well defined objectives that aim to achieve complex image processing in an open source FPGA. Each chapter links to a folder with the source, diagrams and examples in https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision repository 
-
+The project is divided in Chapters with well defined objectives that aim to take steps to eventualy achieve complex image processing in an open source FPGA. Each chapter links to a folder with the source, diagrams and examples in this [github repository](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision)
 
 
 
