@@ -83,12 +83,13 @@ Mainly through online seminars, documentation (HDL/verilog), youtube tutorials a
   * LogicGates                
 
   * RAM                     
-      ** RAM
-      ** RGB_RAM
+      -RAM
+      
+      -RGB_RAM
           Custom Storage to handle 24bit-RGB Data
   * HexImgStorage             
 
-  I developed a new module that read hexadecimal data from an image file and stored it in the RAM/RGB_RAM module
+        I developed a new module that read hexadecimal data from an image file and stored it in the RAM/RGB_RAM module
   * HexImageFilter             
 
    Finally managed to do some simple Image Processing. Added a new module to the previous project that read the RGB data from the RGB_RAM Module and applied simple RGB filters to delete the R/G/B components from the hexadecimal data from the BMP image.
@@ -132,6 +133,11 @@ In this chapter I finally manage to integrate a real VGA output to the verilog m
 * binBatmanLogo  
 
 binBatmanLogo is the first working example of VGA output. A simple binary map image of the batman logo is read from the bm.list file and its information published to the VGA module.
+
+![](https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/VGA/binBatmanLogo/Diagrama.png)
+
+
+![](https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/VGA/binBatmanLogo/bm.gif)
 
 * RGB8Colours    
 
