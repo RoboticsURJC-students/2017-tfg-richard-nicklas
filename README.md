@@ -84,12 +84,12 @@ Mainly through online seminars, documentation (HDL/verilog), youtube tutorials a
 
   * RAM                     
       -RAM
-      
       -RGB_RAM
+      
           Custom Storage to handle 24bit-RGB Data
   * HexImgStorage             
 
-        I developed a new module that read hexadecimal data from an image file and stored it in the RAM/RGB_RAM module
+      I developed a new module that read hexadecimal data from an image file and stored it in the RAM/RGB_RAM module
   * HexImageFilter             
 
    Finally managed to do some simple Image Processing. Added a new module to the previous project that read the RGB data from the RGB_RAM Module and applied simple RGB filters to delete the R/G/B components from the hexadecimal data from the BMP image.
@@ -118,8 +118,9 @@ Even though this folder is named /HexToVGA, VGA output wasn't achieved in this c
 
  A python script extracts the RGB hexadecimal values from the rainbow.ppm file into the dataSplit.hex file, this file is read into memory in the RGBgraphics.v module, the RGB values are filtered according to local parameters and finally written into a file. A script adds the ppm header to the filtered Hex values.
 
- In the [HexToVGA/examples](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/HexToVGA/examples
+ In [HexToVGA/examples](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/HexToVGA/examples
 ) we can see the results for different RGB component filtering.
+![](https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/HexToVGA/examples/ColorFilter.PNG)
 
 
 
