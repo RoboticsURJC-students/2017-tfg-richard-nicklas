@@ -97,8 +97,12 @@ Mainly through online seminars, documentation (HDL/verilog), youtube tutorials a
 
    Finally managed to do some simple Image Processing. Added a new module to the previous project that read the RGB data from the RGB_RAM Module and applied simple RGB filters to delete the R/G/B components from the hexadecimal data from the BMP image.
 
+![](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/Basics/HexImageFilter/Untitled%20Diagram.png)
+This test bench adds a new module for color filtering through the filter_X signals.
 
  Even though the verilog modules worked as intended, as seen in the (raw) output data(what I believed to be the RGB hexadecimal values were actually filtered), after recreating the BMP file from the filtered HEX data the image wasn't displaying the intended result.
+
+![](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/Basics/HexImageFilter/robot.png)---Filter R component--->![](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/Basics/HexImageFilter/0Rrobot.png)
 
  This problem aroused because EDAplayground forces a character/line limit to the files used in their online IDE and this limited the size of the input image I could use, this forced me to develop a new way to extract the hexadecimal values from the image.
  The script I was using only worked for a specific 768x512 image, so I had to develop my own solution to extract the data from a custom 32x32 image and the BMP file format proved to be a bit more complex than expected.
@@ -112,7 +116,7 @@ Mainly through online seminars, documentation (HDL/verilog), youtube tutorials a
 
 # 2 [HexToVGA](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/HexToVGA)
 
-In this Chapter, I began the transition from the online IDE to the real FPGA Icezum Alhambra I. The size limit and the inability to write the data to a file were hindering progress so I adapted the code to Icestudio, all .v files became .ice files.
+In this Chapter I began the transition from the online IDE to the real FPGA Icezum Alhambra I. The size limit and the inability to write the data to a file were hindering progress so I adapted the code to Icestudio, all .v files became .ice files.
 
 Even though this folder is named /HexToVGA, VGA output wasn't achieved in this chapter, what was achieved was automation of the image file reading, writing and encoding and working image processing(color filters)
 
@@ -129,7 +133,7 @@ Even though this folder is named /HexToVGA, VGA output wasn't achieved in this c
 # 3 [VGA](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/VGA)
 
 
-In this chapter I finally manage to integrate a real VGA output to the verilog modules. Due to the HW limitations of the Icezum Alhambra the VGA output is limited in resolution, size and frame rate, this meant that input data needed trimming in order to be successfully stored, processed and displayed.
+Finally manage to integrate a real VGA output to the verilog modules. Due to the HW limitations of the Icezum Alhambra the VGA output is limited in resolution, size and frame rate, this meant that input data needed trimming in order to be successfully stored, processed and displayed.
 
 
 
