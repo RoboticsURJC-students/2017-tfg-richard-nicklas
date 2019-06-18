@@ -80,18 +80,18 @@ Mainly through online seminars, documentation (HDL/verilog), youtube tutorials a
 
 
 
-   *LogicGates                
+  *LogicGates                
 
-    *RAM                     
-        **RAM
-        **RGB_RAM
-            Custom Storage to handle 24bit-RGB Data
-    *HexImgStorage             
+  *RAM                     
+      **RAM
+      **RGB_RAM
+          Custom Storage to handle 24bit-RGB Data
+  *HexImgStorage             
 
-        I developed a new module that read hexadecimal data from an image file and stored it in the RAM/RGB_RAM module
-     *HexImageFilter             
+  I developed a new module that read hexadecimal data from an image file and stored it in the RAM/RGB_RAM module
+  *HexImageFilter             
 
-         Finally managed to do some simple Image Processing. Added a new module to the previous project that read the RGB data from the RGB_RAM Module and applied simple RGB filters to delete the R/G/B components from the hexadecimal data from the BMP image.
+   Finally managed to do some simple Image Processing. Added a new module to the previous project that read the RGB data from the RGB_RAM Module and applied simple RGB filters to delete the R/G/B components from the hexadecimal data from the BMP image.
 
 
  Even though the verilog modules worked as intended, as seen in the (raw) output data(what I believed to be the RGB hexadecimal values were actually filtered), after recreating the BMP file from the filtered HEX data the image wasn't displaying the intended result.
@@ -125,28 +125,28 @@ Even though this folder is named /HexToVGA, VGA output wasn't achieved in this c
 # 3 [VGA](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/VGA)
 
 
-    In this chapter I finally manage to integrate a real VGA output to the verilog modules. Due to the HW limitations of the Icezum Alhambra the VGA output is limited in resolution, size and frame rate, this meant that input data needed trimming in order to be successfully stored, processed and displayed.
+In this chapter I finally manage to integrate a real VGA output to the verilog modules. Due to the HW limitations of the Icezum Alhambra the VGA output is limited in resolution, size and frame rate, this meant that input data needed trimming in order to be successfully stored, processed and displayed.
 
 
 
-    *binBatmanLogo  
+*binBatmanLogo  
 
-        binBatmanLogo is the first working example of VGA output. A simple binary map image of the batman logo is read from the bm.list file and its information published to the VGA module.
+binBatmanLogo is the first working example of VGA output. A simple binary map image of the batman logo is read from the bm.list file and its information published to the VGA module.
 
-    *RGB8Colours    
-
-
-        The batman logo could be displayed in color but it still was binary data so the output only displayed 2 of the 8 possible values. A new hex images was used with 24bits per pixel, as we can only display 8 bit color(3 bits per pixel) this was an ideal situation to implement simple RGB filters.
-
-        This project swaps the binary batman image to a RGB(24 bits per pixel) 32x32 hex image and displays through VGA a 3 bit per pixel version of it. Applying a color filter where pixels exceeding a 50% threshold on its RGB 8 bit values will be displayed as 1 or otherwise as 0, effectively translating from 16,777,216 colors to 8.
+*RGB8Colours    
 
 
-       
-    *RGB8ColRAM        
+The batman logo could be displayed in color but it still was binary data so the output only displayed 2 of the 8 possible values. A new hex images was used with 24bits per pixel, as we can only display 8 bit color(3 bits per pixel) this was an ideal situation to implement simple RGB filters.
 
-        In the RGB8Colous project, the data processing was done on-the-go (read, processed and displayed). This behavior is enough for simple image processing but the aim of this project is to use more complex image processing like convolutions and complex filters. These operations require access to different parts of the images data at the same time, making storage a necessity.
+This project swaps the binary batman image to a RGB(24 bits per pixel) 32x32 hex image and displays through VGA a 3 bit per pixel version of it. Applying a color filter where pixels exceeding a 50% threshold on its RGB 8 bit values will be displayed as 1 or otherwise as 0, effectively translating from 16,777,216 colors to 8.
 
-        In this project the module developed in Basics/RAM is integrated to provide storage reading and writing capabilities.
+
+
+*RGB8ColRAM        
+
+In the RGB8Colous project, the data processing was done on-the-go (read, processed and displayed). This behavior is enough for simple image processing but the aim of this project is to use more complex image processing like convolutions and complex filters. These operations require access to different parts of the images data at the same time, making storage a necessity.
+
+In this project the module developed in Basics/RAM is integrated to provide storage reading and writing capabilities.
 
 
 
@@ -154,6 +154,6 @@ Even though this folder is named /HexToVGA, VGA output wasn't achieved in this c
 # 4 [CAM_VGA](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/CAM_VGA)
 
 
-        This Chapter's main objective is to start using real input data from a camera instead of hex/bin images, finally creating a project capable of recording, processing and displaying live video with an open-source FPGA.
+This Chapter's main objective is to start using real input data from a camera instead of hex/bin images, finally creating a project capable of recording, processing and displaying live video with an open-source FPGA.
 
-        We decided to use an OV7670 camera for this purpose, as described in previous chapters, the Alhambra I has serious HW limitations so the default behavior of the OV7670 overwhelmingly outperforms our capabilities. This is why I'm using a modified version of the camera module, the data stored in the FPGA will be 18 bit per pixel (instead of 24bit per pixel) and only a 32x32 subset of the recorded image will be used for image processing and display. 
+We decided to use an OV7670 camera for this purpose, as described in previous chapters, the Alhambra I has serious HW limitations so the default behavior of the OV7670 overwhelmingly outperforms our capabilities. This is why I'm using a modified version of the camera module, the data stored in the FPGA will be 18 bit per pixel (instead of 24bit per pixel) and only a 32x32 subset of the recorded image will be used for image processing and display. 
