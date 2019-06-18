@@ -4,60 +4,60 @@
 # Documentation & Sources
 
   FPGA:
-  
-    FPGAs and Verilog HDL:
-    
-      From Intel FPGA youtube channel(https://www.youtube.com/channel/UC0wEPiFb0J6AZZ3oPXRoRpw): 
-        -Verilog HDL Basics (https://www.youtube.com/watch?v=PJGvZSlsLKs):
-          Brief overview of Verilog structure, terminology and syntax.
-        -How to Begin a Simple FPGA Design(https://www.youtube.com/watch?v=bwoyQ_RnaiA)
-       
-      From Synopsys youtube channel(https://www.youtube.com/channel/UCUiwwDJdlOIILWWCjPKLb9Q)
-        SystemVerilog & UVM
-        -Intro (https://www.youtube.com/watch?v=igYsB_sKeNc)
-        -UVM Basics: (https://www.youtube.com/watch?v=WEA4Ds1WAh4)
-     
-    Simmulation:
-                
-      -Usefull info on testbenches http://www.drdobbs.com/embedded-systems/easy-verilog-test-benches/240166891
- 
-      -List of HDL simulators(https://en.wikipedia.org/wiki/List_of_HDL_simulators)(including Open-Source):
-      
-          Commercial:
-            --Alteras ModelSim: seems to be one of the best and most popular but isn't open-source. Yet it's available in student, or evaluation/demo edition.
 
-          Free:
-            --EDA Playground(https://www.edaplayground.com/): Online IDE
-              Nice examples like "UVM Hello World Tutorial" https://www.youtube.com/watch?v=Qn6SvG-Kya0
-              
-              
+FPGAs and Verilog HDL:
 
-          Free & Open-source:
-            Found two interesting solutions
+From Intel FPGA youtube channel(https://www.youtube.com/channel/UC0wEPiFb0J6AZZ3oPXRoRpw): 
+-Verilog HDL Basics (https://www.youtube.com/watch?v=PJGvZSlsLKs):
+Brief overview of Verilog structure, terminology and syntax.
+-How to Begin a Simple FPGA Design(https://www.youtube.com/watch?v=bwoyQ_RnaiA)
 
-            -- Icarus verilog (http://iverilog.icarus.com/): Verilog simulation and synthesis tool. 
-                ·Nice Fandom wiki https://iverilog.fandom.com/wiki/Main_Page
-                ·Compatible with free waveform viewer (GTKWAVE)
+From Synopsys youtube channel(https://www.youtube.com/channel/UCUiwwDJdlOIILWWCjPKLb9Q)
+SystemVerilog & UVM
+-Intro (https://www.youtube.com/watch?v=igYsB_sKeNc)
+-UVM Basics: (https://www.youtube.com/watch?v=WEA4Ds1WAh4)
 
-            --Verilator(https://www.veripool.org/wiki/verilator): converts Verilog to a cycle-accurate behavioral model in C++/C/SystemC. 
-            
-    -IDE:
-    
-      Icestudio (https://alhambrabits.com/software/)
-        Documentation(https://icestudio.readthedocs.io/en/latest/)
+Simmulation:
 
-        
-  Image Processing:
+-Usefull info on testbenches http://www.drdobbs.com/embedded-systems/easy-verilog-test-benches/240166891
 
-      https://en.wikipedia.org/wiki/Mathematical_morphology
-      https://en.wikipedia.org/wiki/Digital_image_processing
+-List of HDL simulators(https://en.wikipedia.org/wiki/List_of_HDL_simulators)(including Open-Source):
 
-      Masks:
+Commercial:
+--Alteras ModelSim: seems to be one of the best and most popular but isn't open-source. Yet it's available in student, or evaluation/demo edition.
 
-      https://en.wikipedia.org/wiki/Kernel_(image_processing)
+Free:
+--EDA Playground(https://www.edaplayground.com/): Online IDE
+Nice examples like "UVM Hello World Tutorial" https://www.youtube.com/watch?v=Qn6SvG-Kya0
 
-      Convolution
-      https://www.allaboutcircuits.com/technical-articles/two-dimensional-convolution-in-image-processing/
+
+
+Free & Open-source:
+Found two interesting solutions
+
+-- Icarus verilog (http://iverilog.icarus.com/): Verilog simulation and synthesis tool. 
+·Nice Fandom wiki https://iverilog.fandom.com/wiki/Main_Page
+·Compatible with free waveform viewer (GTKWAVE)
+
+--Verilator(https://www.veripool.org/wiki/verilator): converts Verilog to a cycle-accurate behavioral model in C++/C/SystemC. 
+
+-IDE:
+
+Icestudio (https://alhambrabits.com/software/)
+Documentation(https://icestudio.readthedocs.io/en/latest/)
+
+
+Image Processing:
+
+https://en.wikipedia.org/wiki/Mathematical_morphology
+https://en.wikipedia.org/wiki/Digital_image_processing
+
+Masks:
+
+https://en.wikipedia.org/wiki/Kernel_(image_processing)
+
+Convolution
+https://www.allaboutcircuits.com/technical-articles/two-dimensional-convolution-in-image-processing/
 
 
 
@@ -80,16 +80,16 @@ Mainly through online seminars, documentation (HDL/verilog), youtube tutorials a
 
 
 
-  *LogicGates                
+  * LogicGates                
 
-  *RAM                     
-      **RAM
-      **RGB_RAM
+  * RAM                     
+      ** RAM
+      ** RGB_RAM
           Custom Storage to handle 24bit-RGB Data
-  *HexImgStorage             
+  * HexImgStorage             
 
   I developed a new module that read hexadecimal data from an image file and stored it in the RAM/RGB_RAM module
-  *HexImageFilter             
+  * HexImageFilter             
 
    Finally managed to do some simple Image Processing. Added a new module to the previous project that read the RGB data from the RGB_RAM Module and applied simple RGB filters to delete the R/G/B components from the hexadecimal data from the BMP image.
 
@@ -129,11 +129,11 @@ In this chapter I finally manage to integrate a real VGA output to the verilog m
 
 
 
-*binBatmanLogo  
+* binBatmanLogo  
 
 binBatmanLogo is the first working example of VGA output. A simple binary map image of the batman logo is read from the bm.list file and its information published to the VGA module.
 
-*RGB8Colours    
+* RGB8Colours    
 
 
 The batman logo could be displayed in color but it still was binary data so the output only displayed 2 of the 8 possible values. A new hex images was used with 24bits per pixel, as we can only display 8 bit color(3 bits per pixel) this was an ideal situation to implement simple RGB filters.
@@ -142,7 +142,7 @@ This project swaps the binary batman image to a RGB(24 bits per pixel) 32x32 hex
 
 
 
-*RGB8ColRAM        
+* RGB8ColRAM        
 
 In the RGB8Colous project, the data processing was done on-the-go (read, processed and displayed). This behavior is enough for simple image processing but the aim of this project is to use more complex image processing like convolutions and complex filters. These operations require access to different parts of the images data at the same time, making storage a necessity.
 
