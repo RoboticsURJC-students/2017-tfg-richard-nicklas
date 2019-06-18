@@ -80,26 +80,28 @@ Mainly through online seminars, documentation (HDL/verilog), youtube tutorials a
 
 
 
-  * LogicGates                
-
-  * RAM                     
-      -RAM
-      -RGB_RAM
+  * [LogicGates](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/Basics/LogicGates)
       
-          Custom Storage to handle 24bit-RGB Data
-  * HexImgStorage             
+      Verilog code and testbench testing some simple logic operations (AND, NOR, OR, etc)
+     
+  * [RAM](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/Basics/RAM)
+      
+      A verilog module that implement simple data storage(ram.v) and a custom data storage to handle 24bit-RGB Data (rgb_ram.v)
+      
+  * [HexImgStorage](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/Basics/HexImgStorage)
 
-      I developed a new module that read hexadecimal data from an image file and stored it in the RAM/RGB_RAM module
-  * HexImageFilter             
+      A new module capable of reading hexadecimal data from an image file and store it in the RAM/rgb_ram.v module
+      ![](https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/Basics/HexImgStorage/Diagram.png)
+
+  * [HexImageFilter](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/Basics/HexImageFilter)
 
    Finally managed to do some simple Image Processing. Added a new module to the previous project that read the RGB data from the RGB_RAM Module and applied simple RGB filters to delete the R/G/B components from the hexadecimal data from the BMP image.
 
 
  Even though the verilog modules worked as intended, as seen in the (raw) output data(what I believed to be the RGB hexadecimal values were actually filtered), after recreating the BMP file from the filtered HEX data the image wasn't displaying the intended result.
 
- This problem aroused because EDAplayground forces a character/line limit to the files used in their online IDE and this limited the size of the input image I could use.
-
- The script I was using to extract the hexadecimal RGB data only worked for a specific 768x512 image, so I had to develop my own solution to extract the data from a custom 32x32 image and the BMP file format proved to be a bit more complex than expected.
+ This problem aroused because EDAplayground forces a character/line limit to the files used in their online IDE and this limited the size of the input image I could use, this forced me to develop a new way to extract the hexadecimal values from the image.
+ The script I was using only worked for a specific 768x512 image, so I had to develop my own solution to extract the data from a custom 32x32 image and the BMP file format proved to be a bit more complex than expected.
 
  Long story short, after some headaches I noticed 2 issues, that the data in the 32x32 image I was using wasn't RGB but RGBA and that correct encoding is really important when handling .bmp, .hex and raw files.
 
