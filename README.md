@@ -137,7 +137,7 @@ Finally manage to integrate a real VGA output to the verilog modules. Due to the
 
 
 
-* binBatmanLogo  
+* [binBatmanLogo](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/VGA/binBatmanLogo)  
 
 binBatmanLogo is the first working example of VGA output. A simple binary map image of the batman logo is read from the bm.list file and its information published to the VGA module.
 
@@ -146,7 +146,7 @@ binBatmanLogo is the first working example of VGA output. A simple binary map im
 
 ![](https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/VGA/binBatmanLogo/bm.gif)
 
-* RGB8Colours    
+* [RGB8Colours ](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/VGA/RGB8Colours)   
 
 
 The batman logo could be displayed in color but it still was binary data so the output only displayed 2 of the 8 possible values. A new hex images was used with 24bits per pixel, as we can only display 8 bit color(3 bits per pixel) this was an ideal situation to implement simple RGB filters.
@@ -155,7 +155,7 @@ This project swaps the binary batman image to a RGB(24 bits per pixel) 32x32 hex
 
 
 
-* RGB8ColRAM        
+* [RGB8ColRAM ](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/VGA/RGB8ColRAM)
 
 In the RGB8Colous project, the data processing was done on-the-go (read, processed and displayed). This behavior is enough for simple image processing but the aim of this project is to use more complex image processing like convolutions and complex filters. These operations require access to different parts of the images data at the same time, making storage a necessity.
 
