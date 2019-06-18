@@ -1,7 +1,7 @@
-##Computer Vision algorithm optimization on FPGA
+## Computer Vision algorithm optimization on FPGA
 
 
-#Documentation & Sources
+# Documentation & Sources
 
   FPGA:
   
@@ -70,7 +70,7 @@ The project is divided in Chapters with well defined objectives that aim to achi
 
 
 
-#1 [Basics](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/Basics)
+# 1 [Basics](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/Basics)
 
 The different folders in /Basics had a simple objective, learn FPGA/verilog fundamentals and test some functionality that would be needed later.
 Mainly through online seminars, documentation (HDL/verilog), youtube tutorials and some examples the EDAPlayground community had uploaded to the platform I managed to familiarize with the HDL and eventually develop working examples that could simulate image data collection, processing and storage.
@@ -107,7 +107,7 @@ Mainly through online seminars, documentation (HDL/verilog), youtube tutorials a
 
 
 
-#2 [HexToVGA](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/HexToVGA)
+# 2 [HexToVGA](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/HexToVGA)
 
 In this Chapter, I began the transition from the online IDE to the real FPGA Icezum Alhambra I. The size limit and the inability to write the data to a file were hindering progress so I adapted the code to Icestudio, all .v files became .ice files.
 
@@ -117,12 +117,12 @@ Even though this folder is named /HexToVGA, VGA output wasn't achieved in this c
 
  A python script extracts the RGB hexadecimal values from the rainbow.ppm file into the dataSplit.hex file, this file is read into memory in the RGBgraphics.v module, the RGB values are filtered according to local parameters and finally written into a file. A script adds the ppm header to the filtered Hex values.
 
- In the HexToVGA/examples we can see the results for different RGB component filtering.
-https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/HexToVGA/examples
+ In the [HexToVGA/examples](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/HexToVGA/examples
+) we can see the results for different RGB component filtering.
 
 
 
-#3 [VGA](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/VGA)
+# 3 [VGA](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/VGA)
 
 
     In this chapter I finally manage to integrate a real VGA output to the verilog modules. Due to the HW limitations of the Icezum Alhambra the VGA output is limited in resolution, size and frame rate, this meant that input data needed trimming in order to be successfully stored, processed and displayed.
@@ -151,7 +151,7 @@ https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/He
 
 
 
-#4 [CAM_VGA](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/CAM_VGA)
+# 4 [CAM_VGA](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/CAM_VGA)
 
 
         This Chapter's main objective is to start using real input data from a camera instead of hex/bin images, finally creating a project capable of recording, processing and displaying live video with an open-source FPGA.
