@@ -118,7 +118,7 @@ This test bench adds a new module for color filtering through the filter_X signa
 
 In this Chapter I began the transition from the online IDE to the real FPGA Icezum Alhambra I. The size limit and the inability to write the data to a file were hindering progress so I adapted the code to Icestudio, all .v files became .ice files.
 
-Even though this folder is named /HexToVGA, VGA output wasn't achieved in this chapter, what was achieved was automation of the image file reading, writing and encoding and working image processing(color filters)
+Even though this folder is named /HexToVGA, VGA output isn't achieved in this chapter, what is achieved is automation of the image file reading, writing and encoding and working image processing(color filters)
 
  I changed the input image format to .PPM which is way simpler than .bmp and allowed me to focus on the more important verilog modules,
 
