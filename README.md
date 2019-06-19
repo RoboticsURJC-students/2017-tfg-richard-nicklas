@@ -174,4 +174,7 @@ This Chapter's main objective is to start using real input data from a camera in
 
 We decided to use an OV7670 camera for this purpose, as described in previous chapters, the Alhambra I has serious HW limitations so the default behavior of the OV7670 overwhelmingly outperforms our capabilities. This is why I'm using a modified version of the camera module, the data stored in the FPGA will be 18 bit per pixel (instead of 24bit per pixel) and only a 32x32 subset of the recorded image will be used for image processing and display. 
 
+Debugging  has become a major issue as IceStudio doesn't seem to be able to identify problems occuring in the modules and overall configuration, the modules code seems to verify but fails to build and no information is given. A simpler version of the camera recording modules is needed to at least make it work and through trial and error upgrade it to the intended final state:
+
+
 ![](https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/CAM_VGA/CAM_VGADiagram1.png)
