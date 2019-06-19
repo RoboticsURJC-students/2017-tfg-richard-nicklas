@@ -135,6 +135,9 @@ Even though this folder is named /HexToVGA, VGA output isn't achieved in this ch
 
 Finally manage to integrate a real VGA output to the verilog modules. Due to the HW limitations of the Icezum Alhambra the VGA output is limited in resolution, size and frame rate, this meant that input data needed trimming in order to be successfully stored, processed and displayed.
 
+* Testing VGA module 
+
+![](https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/VGA/VGATest.gif)
 
 
 * [binBatmanLogo](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/VGA/binBatmanLogo)  
@@ -153,7 +156,7 @@ The batman logo could be displayed in color but it still was binary data so the 
 
 This project swaps the binary batman image to a RGB(24 bits per pixel) 32x32 hex image and displays through VGA a 3 bit per pixel version of it. Applying a color filter where pixels exceeding a 50% threshold on its RGB 8 bit values will be displayed as 1 or otherwise as 0, effectively translating from 16,777,216 colors to 8.
 
-
+![](https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/VGA/RGB8Colours/8colorVGA.gif)
 
 * [RGB8ColRAM ](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/VGA/RGB8ColRAM)
 
