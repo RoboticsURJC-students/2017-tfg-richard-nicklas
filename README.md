@@ -173,3 +173,5 @@ In this project the module developed in Basics/RAM is integrated to provide stor
 This Chapter's main objective is to start using real input data from a camera instead of hex/bin images, finally creating a project capable of recording, processing and displaying live video with an open-source FPGA.
 
 We decided to use an OV7670 camera for this purpose, as described in previous chapters, the Alhambra I has serious HW limitations so the default behavior of the OV7670 overwhelmingly outperforms our capabilities. This is why I'm using a modified version of the camera module, the data stored in the FPGA will be 18 bit per pixel (instead of 24bit per pixel) and only a 32x32 subset of the recorded image will be used for image processing and display. 
+
+![](https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/CAM_VGA/CAM_VGADiagram1.png)
