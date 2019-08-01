@@ -23,6 +23,7 @@ We decided to use an OV7670 camera for this purpose, as described in previous ch
 
 Debugging  has become a major issue as IceStudio doesn't seem to be able to identify problems occuring in the modules and overall configuration, the modules code seems to verify but fails to build and no information is given. A simpler version of the camera recording modules is needed to at least make it work and through trial and error upgrade it to the intended final state:
 
+![](https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/CAM_VGA/CAM_VGADiagram1.png)
 
 # 3 [VGA](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/VGA)
 
@@ -177,4 +178,4 @@ Convolution
 https://www.allaboutcircuits.com/technical-articles/two-dimensional-convolution-in-image-processing/
 
 
-![](https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/CAM_VGA/CAM_VGADiagram1.png)
+
