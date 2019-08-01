@@ -25,6 +25,11 @@ Debugging  has become a major issue as IceStudio doesn't seem to be able to iden
 
 ![](https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/CAM_VGA/CAM_VGADiagram1.png)
 
+It seems that the issue with IceStudio where compiling errors cannot be seen if they are part of a imported .ice module/file can be solved by "Unraveling" these modules so there is only a single .ice file. this allowed me to finally be able compile and upload the project to the FPGA. 
+
+However this didn't improve the situation very much as the video capture part of the project isn't working, the VGA display works fine though. There seems to be no imput for the Camera as if the IC2 protocol that initilizes it isn't working, a signal analyzer has become a necessity to be able to debug these behaviours.
+
+
 # 3 [VGA](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/VGA)
 
 
