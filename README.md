@@ -29,6 +29,9 @@ It seems that the issue with IceStudio where compiling errors cannot be seen if 
 
 However this didn't improve the situation very much as the video capture part of the project isn't working, the VGA display works fine though. There seems to be no imput for the Camera as if the IC2 protocol that initilizes it isn't working, a signal analyzer has become a necessity to be able to debug these behaviours.
 
+![](https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/CAM_VGA/img/HREFVSYNC.png)
+![](https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/CAM_VGA/img/image(1).png)
+![](https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/CAM_VGA/img/image.png)
 
 # 3 [VGA](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/VGA)
 
