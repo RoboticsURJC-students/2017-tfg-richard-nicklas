@@ -27,11 +27,19 @@ Debugging  has become a major issue as IceStudio doesn't seem to be able to iden
 
 It seems that the issue with IceStudio where compiling errors cannot be seen if they are part of a imported .ice module/file can be solved by "Unraveling" these modules so there is only a single .ice file. this allowed me to finally be able compile and upload the project to the FPGA. 
 
-However this didn't improve the situation very much as the video capture part of the project isn't working, the VGA display works fine though. There seems to be no imput for the Camera as if the IC2 protocol that initilizes it isn't working, a signal analyzer has become a necessity to be able to debug these behaviours.
+However this didn't improve the situation very much as the video capture part of the project isn't working, the VGA display works fine though. There seems to be no imput for the Camera as if the I2C protocol that initilizes it isn't working, a signal analyzer has become a necessity to be able to debug these behaviours.
+
+
+With the help of a Logic Analyzer and Saleae Logic 1.2.18 software I was able to start sampling the different channels that feed and are fed to the OV7670 camera, Saleae Logic includes a I2C protocol decoder so we decode the I2C communications as seen in the next image:
+
+![](https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/CAM_VGA/img/I2C.png)
+
+At first glance it seemed that the I2C protocol was working as intended but sampling other channels like VSYNC (Vertical synchronization (Output)) and HREF (Horizontal synchronization (Output)) we can see that noise is polluting our signals...
 
 ![](https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/CAM_VGA/img/HREFVSYNC.png)
-![](https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/CAM_VGA/img/image(1).png)
-![](https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/CAM_VGA/img/image.png)
+
+It seems that the Icezum Alhambra I has some issues keeping clean signals so one solution would be to add pull-up resistors to the conflicting channels, I'll be testing again once I get my hands on some of those. Nevertheless the limits of the Alhambra I have brought in constant problems that hinder progress in ways that are only laterally related to the purpose of this project, even though this allowed me to learn a lot, José María, Juan and I have decided that we need to transition to an Icezum Alhambra II, this FPGA was in part developed to fix some of these issues I've been strugling with so hopefully soon I'll be making more progress towards our goal.  
+
 
 # 3 [VGA](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/VGA)
 
