@@ -32,7 +32,7 @@ However this didn't improve the situation very much as the video capture part of
 
 With the help of a Logic Analyzer and Saleae Logic 1.2.18 software I was able to start sampling the different channels that feed and are fed to the OV7670 camera, Saleae Logic includes a I2C protocol decoder so we decode the I2C communications as seen in the next image:
 
-![](https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/CAM_VGA/img/I2C.png)
+![](https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/CAM_VGA/img/I2C.PNG)
 
 At first glance it seemed that the I2C protocol was working as intended but sampling other channels like VSYNC (Vertical synchronization (Output)) and HREF (Horizontal synchronization (Output)) we can see that noise is polluting our signals...
 
