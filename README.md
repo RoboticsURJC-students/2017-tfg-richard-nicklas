@@ -30,7 +30,7 @@ It seems that the issue with IceStudio where compiling errors cannot be seen if 
 However this didn't improve the situation very much as the video capture part of the project isn't working, the VGA display works fine though. There seems to be no imput for the Camera as if the I2C protocol that initilizes it isn't working, a signal analyzer has become a necessity to be able to debug these behaviours.
 
 
-With the help of a Logic Analyzer and Saleae Logic 1.2.18 software I was able to start sampling the different channels that feed and are fed to the OV7670 camera, Saleae Logic includes a I2C protocol decoder so we decode the I2C communications as seen in the next image:
+With the help of a Logic Analyzer and Saleae Logic 1.2.18 software I was able to start sampling the different channels that feed and are fed to the OV7670 camera, Saleae Logic includes a I2C protocol decoder so the I2C communications can be seen in the next image:
 
 ![](https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/CAM_VGA/img/I2C.PNG)
 
