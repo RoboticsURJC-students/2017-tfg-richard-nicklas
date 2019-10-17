@@ -14,6 +14,7 @@ The project is divided in Chapters with well defined objectives that aim to take
 
 # 5 [Test]
 
+The new Alhambra II is ready for testing, I'll implement the simpler "VGA" modules before moving on to the CAM-VGA.
 
 
 # Alhambra I 
