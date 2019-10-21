@@ -12,10 +12,16 @@ The project is divided in Chapters with well defined objectives that aim to take
 
 # Alhambra II v1.0A
 
-# 5 [Test]
+# 5 [CAM VGA II](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/CAM_VGAII/CAM)
+
+While migrating this project to the Alhambra II I stumbled with some pin issues, it seems the new design for the FPGA lacks 8 general purpose pings I was using to output some of the VGA signals in the Alhambra I.
+
+
+# 4.5 [VGA II]
 
 The new Alhambra II is ready for testing, I'll implement the simpler "VGA" modules before moving on to the CAM-VGA.
 
+Migrating the module to the Alhambra II was rather painless and everything seems to be working as intended with the same results as the [VGA] module in the Alhambra I
 
 # Alhambra I 
 
