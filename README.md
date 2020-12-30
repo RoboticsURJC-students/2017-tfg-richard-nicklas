@@ -1,3 +1,5 @@
+TFG Blog https://roboticslaburjc.github.io/2017-tfg-richard-nicklas/
+
 ## Computer Vision algorithm optimization on FPGA
 
 
