@@ -84,8 +84,9 @@ With the help of a Logic Analyzer and Saleae Logic 1.2.18 software I was able to
 
 ![](https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/CAM_VGA/img/I2C.PNG)
 
+
 <figure>
-	<a href=""><img src="https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/CAM_VGA/img/I2C.PNG"></a>
+	<a href=""><img src="/assets/images/I2C.PNG"></a>
 </figure>
 
 At first glance it seemed that the I2C protocol was working as intended but sampling other channels like VSYNC (Vertical synchronization (Output)) and HREF (Horizontal synchronization (Output)) we can see that noise is polluting our signals...
@@ -94,6 +95,10 @@ At first glance it seemed that the I2C protocol was working as intended but samp
 
 <figure>
 	<a href=""><img src="https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/CAM_VGA/img/HREFVSYNC.png"></a>
+</figure>
+
+<figure>
+	<a href=""><img src="/assets/images/HREFVSYNC.png"></a>
 </figure>
 
 
@@ -110,8 +115,9 @@ Finally manage to integrate a real VGA output to the verilog modules. Due to the
 
 ![](https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/VGA/VGATest.gif)
 
+
 <figure>
-	<a href=""><img src="https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/VGA/VGATest.gif"></a>
+	<a href=""><img src="/assets/images/VGATest.gif"></a>
 </figure>
 
 * [binBatmanLogo](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/VGA/binBatmanLogo)  
@@ -119,14 +125,17 @@ Finally manage to integrate a real VGA output to the verilog modules. Due to the
 binBatmanLogo is the first working example of VGA output. A simple binary map image of the batman logo is read from the bm.list file and its information published to the VGA module.
 
 ![](https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/VGA/binBatmanLogo/Diagrama.png)
+
 <figure>
-	<a href=""><img src="https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/VGA/binBatmanLogo/Diagrama.png"></a>
+	<a href=""><img src="/assets/images/Diagrama.png"></a>
 </figure>
 
 ![](https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/VGA/binBatmanLogo/bm.gif)
+
 <figure>
-	<a href=""><img src="https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/VGA/binBatmanLogo/bm.gif"></a>
+	<a href=""><img src="/assets/images/bm.gif"></a>
 </figure>
+
 * [RGB8Colours ](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/VGA/RGB8Colours)   
 
 
@@ -138,6 +147,11 @@ This project swaps the binary batman image to a RGB(24 bits per pixel) 32x32 hex
 <figure>
 	<a href=""><img src="https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/VGA/RGB8Colours/8colorVGA.gif"></a>
 </figure>
+
+<figure>
+	<a href=""><img src="/assets/images/8colorVGA.gif"></a>
+</figure>
+
 * [RGB8ColRAM ](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/VGA/RGB8ColRAM)
 
 In the RGB8Colous project, the data processing was done on-the-go (read, processed and displayed). This behavior is enough for simple image processing but the aim of this project is to use more complex image processing like convolutions and complex filters. These operations require access to different parts of the images data at the same time, making storage a necessity.
@@ -159,9 +173,11 @@ Even though this folder is named /HexToVGA, VGA output isn't achieved in this ch
  In [HexToVGA/examples](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/HexToVGA/examples
 ) we can see the results for different RGB component filtering.
 ![](https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/HexToVGA/examples/ColorFilter.PNG)
+
 <figure>
-	<a href=""><img src="https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/HexToVGA/examples/ColorFilter.PNG"></a>
+	<a href=""><img src="/assets/images/ColorFilter.PNG"></a>
 </figure>
+
 
 # 1 [Basics](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/Basics)
 
@@ -188,6 +204,8 @@ Mainly through online seminars, documentation (HDL/verilog), youtube tutorials a
 <figure>
 	<a href=""><img src="https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/Basics/HexImgStorage/Diagram.png"></a>
 </figure>
+
+
   * [HexImageFilter](https://github.com/JdeRobot/FPGA-robotics/tree/master/Projects/ComputerVision/Basics/HexImageFilter)
 
    Finally managed to do some simple Image Processing. Added a new module to the previous project that read the RGB data from the RGB_RAM Module and applied simple RGB filters to delete the R/G/B components from the hexadecimal data from the BMP image.
@@ -206,12 +224,19 @@ This test bench adds a new module for color filtering through the filter_X signa
 <figure>
 	<a href=""><img src="https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/Basics/HexImageFilter/robot.png"></a>
 </figure>
+<figure>
+	<a href=""><img src="/assets/images/robot.png"></a>
+</figure>
 ---Filter R component--->
 
 ![](https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/Basics/HexImageFilter/0Rrobot.png)
 <figure>
 	<a href=""><img src="https://github.com/JdeRobot/FPGA-robotics/blob/master/Projects/ComputerVision/Basics/HexImageFilter/0Rrobot.png"></a>
 </figure>
+<figure>
+	<a href=""><img src="/assets/images/0Rrobot.png"></a>
+</figure>
+
 
  This problem aroused because EDAplayground forces a character/line limit to the files used in their online IDE and this limited the size of the input image I could use, this forced me to develop a new way to extract the hexadecimal values from the image.
  The script I was using only worked for a specific 768x512 image, so I had to develop my own solution to extract the data from a custom 32x32 image and the BMP file format proved to be a bit more complex than expected.
