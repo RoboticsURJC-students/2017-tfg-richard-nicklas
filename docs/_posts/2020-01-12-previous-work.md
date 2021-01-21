@@ -18,6 +18,16 @@ tags:
 - tag 3
 - tag 4
 
+
+
+gallery:
+  - url: /assets/images/CAM_VGADiagram1.png
+    image_path: assets/images/CAM_VGADiagram1.png
+    alt: "CAM_VGADiagram1"
+
+
+
+
 author: Richard Nicklas
 pinned: false
 ---
@@ -72,8 +82,11 @@ Debugging  has become a major issue as IceStudio doesn't seem to be able to iden
 ####
 
 <figure>
-	<a href=""><img src="/assets/images/CAM_VGADiagram1.png"></a>
+	<a href=""><img src="assets/images/CAM_VGADiagram1.png"></a>
 </figure>
+
+
+{% include gallery caption="VGA Diagram " %}
 
 It seems that the issue with IceStudio where compiling errors cannot be seen if they are part of a imported .ice module/file can be solved by "Unraveling" these modules so there is only a single .ice file. this allowed me to finally be able compile and upload the project to the FPGA. 
 
