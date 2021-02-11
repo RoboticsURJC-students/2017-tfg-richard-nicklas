@@ -1,0 +1,24 @@
+Sources.
+
+GoPiGo:
+	https://github.com/DexterInd/GoPiGo3
+
+Spidev:
+	https://pypi.org/project/spidev/#description
+	spidev_module.c (MIT)
+
+ioctl: 
+
+Unix uses a special function called ioctl (short for Input Output ConTroL). Every device can have its own ioctl commands, which can be read ioctl's (to send information from a process to the kernel), write ioctl's (to return information to a process), [1] both or neither. The ioctl function is called with three parameters: the file descriptor of the appropriate device file, the ioctl number, and a parameter, which is of type long so you can use a cast to use it to pass anything. 
+
+
+The ioctl number encodes the major device number, the type of the ioctl, the command, and the type of the parameter. This ioctl number is usually created by a macro call (_IO, _IOR, _IOW or _IOWR --- depending on the type) in a header file. This header file should then be included both by the programs which will use ioctl (so they can generate the appropriate ioctl's) and by the kernel module (so it can understand it). In the example below, the header file is chardev.h and the program which uses it is ioctl.c.
+
+
+
+The Linux Kernel Module Programming Guide
+Prev	Chapter 7. Talking To Device Files
+	https://tldp.org/LDP/lkmpg/2.4/html/x856.html
+
+ioctl(2) — Linux manual page
+	https://man7.org/linux/man-pages/man2/ioctl.2.html
