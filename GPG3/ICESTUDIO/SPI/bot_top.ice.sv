@@ -2,15 +2,16 @@
 // 12MHz clock with 115200 baud
 // Este codigo vale para pegarlo directamente dentro de un modulo de ICESTUDIO, 
 //TODO: adaptarlo a un modulo verilog de verdad.
+// 12MHz clock with 115200 baud
 
 	 reg start = 0;         	// Registro que mantiene la señal de start para el módulo SPI.
 
-
-	 wire SSbar;
-	 wire ack;                  // Conexión con la señal de reconocimiento de lectura del registro de datos de la flash.
+	 reg ack;                  // Señal para terminar ejecucion
      wire busy_spi;             // Módulo SPI ocupado con una transferencia de datos.
+     
+     reg[7:0] leds;
+     reg SSBar;
 	 reg[7:0] data_spi;         // Registro con los datos que se quieren transmitir por el módulo SPI.
- 
 
 
 	reg [5:0] counter = 0;
@@ -24,7 +25,7 @@
 		// La señal ack activa solo dura un ciclo de reloj.
 		if (ack) ack = 1'b0;
 
-		//si dimos una vuelta, dejamos de hacer nada
+		//si dimos una vuelta, paramos
      	if (counter<5'b01001) begin
 
 	     	// Tengo que ejecutar estos pasos entiendo que uno por ciclo  
