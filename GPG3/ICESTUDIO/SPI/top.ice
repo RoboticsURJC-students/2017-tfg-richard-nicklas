@@ -62,12 +62,12 @@
             "virtual": false
           },
           "position": {
-            "x": 1952,
-            "y": -872
+            "x": 1320,
+            "y": -944
           }
         },
         {
-          "id": "17b712f0-2569-46ca-81ba-3333583f05b3",
+          "id": "2954c7f5-2660-41e7-8339-3f87a0e79639",
           "type": "basic.input",
           "data": {
             "name": "clk",
@@ -79,11 +79,50 @@
               }
             ],
             "virtual": false,
+            "clock": true
+          },
+          "position": {
+            "x": -288,
+            "y": -720
+          }
+        },
+        {
+          "id": "75611573-93b6-44bc-a107-d81afd1bada0",
+          "type": "basic.output",
+          "data": {
+            "name": "SSBar",
+            "pins": [
+              {
+                "index": "0",
+                "name": "D4",
+                "value": "8"
+              }
+            ],
+            "virtual": false
+          },
+          "position": {
+            "x": 1248,
+            "y": -640
+          }
+        },
+        {
+          "id": "88766357-8742-4d3b-88a7-2db303571b57",
+          "type": "basic.input",
+          "data": {
+            "name": "rst",
+            "pins": [
+              {
+                "index": "0",
+                "name": "SW1",
+                "value": "34"
+              }
+            ],
+            "virtual": false,
             "clock": false
           },
           "position": {
-            "x": -336,
-            "y": -832
+            "x": -352,
+            "y": -560
           }
         },
         {
@@ -102,27 +141,8 @@
             "clock": false
           },
           "position": {
-            "x": -480,
-            "y": -520
-          }
-        },
-        {
-          "id": "75611573-93b6-44bc-a107-d81afd1bada0",
-          "type": "basic.output",
-          "data": {
-            "name": "SSBar",
-            "pins": [
-              {
-                "index": "0",
-                "name": "D4",
-                "value": "8"
-              }
-            ],
-            "virtual": false
-          },
-          "position": {
-            "x": 1792,
-            "y": -448
+            "x": -512,
+            "y": -304
           }
         },
         {
@@ -140,8 +160,8 @@
             "virtual": false
           },
           "position": {
-            "x": 832,
-            "y": 200
+            "x": 912,
+            "y": 168
           }
         },
         {
@@ -159,8 +179,8 @@
             "virtual": false
           },
           "position": {
-            "x": 552,
-            "y": 296
+            "x": 832,
+            "y": 280
           }
         },
         {
@@ -172,28 +192,16 @@
             "local": false
           },
           "position": {
-            "x": 104,
-            "y": -208
-          }
-        },
-        {
-          "id": "d5b61f0e-d5cc-42bb-9716-a06e4dbde57b",
-          "type": "3e6c249e205080168c1bf4ee8dbc33b50653d5f4",
-          "position": {
-            "x": -456,
-            "y": -48
-          },
-          "size": {
-            "width": 96,
-            "height": 64
+            "x": 216,
+            "y": -200
           }
         },
         {
           "id": "eaf46324-a5e3-497b-97a6-e801d08e0049",
           "type": "862d2a36c72ddee13ea44bf906fe1b60efa90941",
           "position": {
-            "x": -448,
-            "y": 112
+            "x": -360,
+            "y": 224
           },
           "size": {
             "width": 96,
@@ -201,13 +209,28 @@
           }
         },
         {
+          "id": "ad62d2d2-f30a-451c-a7dd-f710d856410e",
+          "type": "83e08ef8135e69f2140b2061a033c32bb71c5576",
+          "position": {
+            "x": 216,
+            "y": 16
+          },
+          "size": {
+            "width": 96,
+            "height": 320
+          }
+        },
+        {
           "id": "5ab45a35-ae03-4a13-ac75-55602a35fdf5",
           "type": "basic.code",
           "data": {
-            "code": "\r\n\r\n//////////////////////////////////////////////////////////////////////////////////\r\n// 12MHz clock with 115200 baud\r\n// Este codigo vale para pegarlo directamente dentro de un modulo de ICESTUDIO, \r\n//TODO: adaptarlo a un modulo verilog de verdad.\r\n// 12MHz clock with 115200 baud\r\n\r\n\t reg start = 0;         \t// Registro que mantiene la señal de start para el módulo SPI.\r\n\r\n\t reg ack;                  // Señal para terminar ejecucion\r\n     wire busy_spi;             // Módulo SPI ocupado con una transferencia de datos.\r\n     \r\n     reg[7:0] leds;\r\n     reg SSBar;\r\n\t reg[7:0] data_spi;         // Registro con los datos que se quieren transmitir por el módulo SPI.\r\n\r\n\r\n\treg [5:0] counter = 0;\r\n\r\n\talways @(posedge clk) begin\r\n\r\n\r\n\t\t// La señal start activa solo dura un ciclo de reloj.\r\n\t\tif (start) start = 1'b0;\r\n\r\n\t\t// La señal ack activa solo dura un ciclo de reloj.\r\n\t\tif (ack) ack = 1'b0;\r\n\r\n\t\t//si dimos una vuelta, paramos\r\n     \tif (counter<5'b01001) begin\r\n\r\n\t     \t// Tengo que ejecutar estos pasos entiendo que uno por ciclo  \r\n\t\t\tif (counter == \"0\") begin\r\n\t\t\t\tSSBar <= 1'b0;  \t\t\t// Activar el protocolo SPI en el esclavo (Bot).\r\n\t\t        leds[0] <= 1'b1;\r\n\t\t\tend\r\n\r\n\t\t\t/* tenemos que enviar todo esto para setear leds\r\n\t\t\tspi_array_out[0] = Address;   //8\r\n\t\t\tspi_array_out[1] = GPGSPI_MESSAGE_SET_LED; //6 (enum)\r\n\t\t\tspi_array_out[2] = led; // 0x02\r\n\t\t\tspi_array_out[3] = red; //1\r\n\t\t\tspi_array_out[4] = green; //1\r\n\t\t\tspi_array_out[5] = blue; //1\r\n\t\t\t*/\r\n\r\n\t\t    else if (counter == \"1\") begin\r\n\t\t\t\tdata_spi <= 8'h08;          \r\n\t\t        if (!busy_spi) \r\n\t\t            start <= 1'b1;\r\n\t\t        leds[1] <= 1'b1;\r\n\t\t\tend\r\n\t\t    else if (counter == \"2\") begin\r\n\t\t\t\tdata_spi <= 8'h06;          \r\n\t\t        if (!busy_spi) \r\n\t\t            start <= 1'b1;\r\n\t\t        leds[2] <= 1'b1;\r\n\t\t\tend\r\n\t\t    else if (counter == \"3\") begin\r\n\t\t\t\tdata_spi <= 8'h02;          \r\n\t\t        if (!busy_spi) \r\n\t\t            start <= 1'b1;\r\n\t\t        leds[3] <= 1'b1;\r\n\t\t\tend\r\n\t\t    else if (counter == \"4\") begin\r\n\t\t\t\tdata_spi <= 8'h01;          \r\n\t\t        if (!busy_spi) \r\n\t\t            start <= 1'b1;\r\n\t\t        leds[4] <= 1'b1;\r\n\t\t\tend\r\n\t\t    else if (counter == \"5\") begin\r\n\t\t\t\tdata_spi <= 8'h01;          \r\n\t\t        if (!busy_spi) \r\n\t\t            start <= 1'b1;\r\n\t\t        leds[5] <= 1'b1;\r\n\t\t\tend\r\n\t\t    else if (counter == \"6\") begin\r\n\t\t\t\tdata_spi <= 8'h01;          \r\n\t\t        if (!busy_spi) \r\n\t\t            start <= 1'b1;\r\n\t\t        leds[6] <= 1'b1;\r\n\t\t\tend\t\t\t\r\n\r\n\t\t\telse if (counter == \"7\") begin\r\n\t\t\t\tSSBar <= 1'b1;\t            // Desactivamos el esclavo una vez despierto (según sketch de S.E.Tropea para Lattuino).\r\n\t\t        leds[0] <= 1'b0;\r\n\t\t\tend\r\n\r\n\t\t    else if (counter == \"8\") begin \r\n\t\t        leds <= 8'h00;              // No se hace nada, solo borra los leds.\r\n\t            ack <= 1'b1;         \t\t// terminamos\r\n\t       \t\tSSBar <= 1'b1;  \t\t\t// Desactivar el protocolo SPI en el esclavo (Bot).\r\n     \r\n\t\t    end\r\n\t\tend\r\n\t\tcounter <= counter + 1'b1;\r\n    end\r\n\r\n",
+            "code": "// @include spi_ledctrl.v\r\n\r\nspi_ledctrl i_spi_ledctrl\r\n(\r\n  .rst         (rst),\r\n  .clk         (clk),\r\n  //.MISO        (MISO),\r\n  //.data_flash  (data_flash),\r\n  .busy_spi    (busy_spi),\r\n  .leds        (leds),\r\n  //.SCLK        (SCLK),\r\n  //.MOSI        (MOSI),\r\n  .SSBar       (SSBar),\r\n  .start       (start),\r\n  .data_spi    (data_spi),\r\n  .ack         (ack)\r\n);",
             "params": [],
             "ports": {
               "in": [
+                {
+                  "name": "rst"
+                },
                 {
                   "name": "clk"
                 },
@@ -242,12 +265,15 @@
                   "name": "start"
                 },
                 {
+                  "name": "ack"
+                },
+                {
+                  "name": "ena_2clk"
+                },
+                {
                   "name": "data_spi",
                   "range": "[7:0]",
                   "size": 8
-                },
-                {
-                  "name": "ack"
                 }
               ]
             }
@@ -257,34 +283,12 @@
             "y": -832
           },
           "size": {
-            "width": 1208,
-            "height": 824
-          }
-        },
-        {
-          "id": "ad62d2d2-f30a-451c-a7dd-f710d856410e",
-          "type": "83e08ef8135e69f2140b2061a033c32bb71c5576",
-          "position": {
-            "x": 88,
-            "y": 16
-          },
-          "size": {
-            "width": 96,
-            "height": 320
+            "width": 600,
+            "height": 440
           }
         }
       ],
       "wires": [
-        {
-          "source": {
-            "block": "17b712f0-2569-46ca-81ba-3333583f05b3",
-            "port": "out"
-          },
-          "target": {
-            "block": "5ab45a35-ae03-4a13-ac75-55602a35fdf5",
-            "port": "clk"
-          }
-        },
         {
           "source": {
             "block": "cb6c34af-1c29-45d0-bb17-bb810ba4146e",
@@ -334,39 +338,19 @@
         },
         {
           "source": {
-            "block": "17b712f0-2569-46ca-81ba-3333583f05b3",
-            "port": "out"
-          },
-          "target": {
-            "block": "ad62d2d2-f30a-451c-a7dd-f710d856410e",
-            "port": "c006ec9c-1367-4bbd-865b-c19fab70f995"
-          },
-          "vertices": [
-            {
-              "x": -168,
-              "y": -624
-            }
-          ]
-        },
-        {
-          "source": {
-            "block": "d5b61f0e-d5cc-42bb-9716-a06e4dbde57b",
-            "port": "19c8f68d-5022-487f-9ab0-f0a3cd58bead"
-          },
-          "target": {
-            "block": "ad62d2d2-f30a-451c-a7dd-f710d856410e",
-            "port": "9b246993-0cc1-4390-b6e6-76ab65e824af"
-          }
-        },
-        {
-          "source": {
             "block": "5ab45a35-ae03-4a13-ac75-55602a35fdf5",
             "port": "start"
           },
           "target": {
             "block": "ad62d2d2-f30a-451c-a7dd-f710d856410e",
             "port": "70946051-3fa0-429f-8533-d1f3a5e46b8b"
-          }
+          },
+          "vertices": [
+            {
+              "x": 112,
+              "y": 384
+            }
+          ]
         },
         {
           "source": {
@@ -389,7 +373,7 @@
           },
           "vertices": [
             {
-              "x": -272,
+              "x": -136,
               "y": -320
             }
           ]
@@ -435,8 +419,8 @@
           },
           "vertices": [
             {
-              "x": -288,
-              "y": -408
+              "x": 32,
+              "y": -120
             }
           ]
         },
@@ -472,74 +456,88 @@
           },
           "vertices": [
             {
-              "x": 1336,
-              "y": 128
+              "x": 368,
+              "y": -56
+            },
+            {
+              "x": 256,
+              "y": -56
             }
           ],
           "size": 8
+        },
+        {
+          "source": {
+            "block": "88766357-8742-4d3b-88a7-2db303571b57",
+            "port": "out"
+          },
+          "target": {
+            "block": "5ab45a35-ae03-4a13-ac75-55602a35fdf5",
+            "port": "rst"
+          },
+          "vertices": [
+            {
+              "x": -40,
+              "y": -752
+            }
+          ]
+        },
+        {
+          "source": {
+            "block": "88766357-8742-4d3b-88a7-2db303571b57",
+            "port": "out"
+          },
+          "target": {
+            "block": "ad62d2d2-f30a-451c-a7dd-f710d856410e",
+            "port": "e2542641-151a-4e22-b55f-f6841bd61c17"
+          },
+          "vertices": [
+            {
+              "x": 96,
+              "y": -224
+            }
+          ]
+        },
+        {
+          "source": {
+            "block": "2954c7f5-2660-41e7-8339-3f87a0e79639",
+            "port": "out"
+          },
+          "target": {
+            "block": "5ab45a35-ae03-4a13-ac75-55602a35fdf5",
+            "port": "clk"
+          }
+        },
+        {
+          "source": {
+            "block": "2954c7f5-2660-41e7-8339-3f87a0e79639",
+            "port": "out"
+          },
+          "target": {
+            "block": "ad62d2d2-f30a-451c-a7dd-f710d856410e",
+            "port": "c006ec9c-1367-4bbd-865b-c19fab70f995"
+          }
+        },
+        {
+          "source": {
+            "block": "5ab45a35-ae03-4a13-ac75-55602a35fdf5",
+            "port": "ena_2clk"
+          },
+          "target": {
+            "block": "ad62d2d2-f30a-451c-a7dd-f710d856410e",
+            "port": "9b246993-0cc1-4390-b6e6-76ab65e824af"
+          },
+          "vertices": [
+            {
+              "x": 128,
+              "y": -336
+            }
+          ]
         }
       ]
     }
   },
   "dependencies": {
-    "3e6c249e205080168c1bf4ee8dbc33b50653d5f4": {
-      "package": {
-        "name": "Bit 1",
-        "version": "1.0.0",
-        "description": "Assign 1 to the output wire",
-        "author": "Jesús Arroyo",
-        "image": "%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%2247.303%22%20height=%2227.648%22%20viewBox=%220%200%2044.346456%2025.919999%22%3E%3Ctext%20style=%22line-height:125%25%22%20x=%22325.218%22%20y=%22315.455%22%20font-weight=%22400%22%20font-size=%2212.669%22%20font-family=%22sans-serif%22%20letter-spacing=%220%22%20word-spacing=%220%22%20transform=%22translate(-307.01%20-298.51)%22%3E%3Ctspan%20x=%22325.218%22%20y=%22315.455%22%20style=%22-inkscape-font-specification:'Courier%2010%20Pitch'%22%20font-family=%22Courier%2010%20Pitch%22%3E1%3C/tspan%3E%3C/text%3E%3C/svg%3E"
-      },
-      "design": {
-        "graph": {
-          "blocks": [
-            {
-              "id": "b959fb96-ac67-4aea-90b3-ed35a4c17bf5",
-              "type": "basic.code",
-              "data": {
-                "code": "// Bit 1\n\nassign v = 1'b1;",
-                "params": [],
-                "ports": {
-                  "in": [],
-                  "out": [
-                    {
-                      "name": "v"
-                    }
-                  ]
-                }
-              },
-              "position": {
-                "x": 96,
-                "y": 96
-              }
-            },
-            {
-              "id": "19c8f68d-5022-487f-9ab0-f0a3cd58bead",
-              "type": "basic.output",
-              "data": {
-                "name": ""
-              },
-              "position": {
-                "x": 608,
-                "y": 192
-              }
-            }
-          ],
-          "wires": [
-            {
-              "source": {
-                "block": "b959fb96-ac67-4aea-90b3-ed35a4c17bf5",
-                "port": "v"
-              },
-              "target": {
-                "block": "19c8f68d-5022-487f-9ab0-f0a3cd58bead",
-                "port": "in"
-              }
-            }
-          ]
-        }
-      }
-    },
     "862d2a36c72ddee13ea44bf906fe1b60efa90941": {
       "package": {
         "name": "Bit 0",
@@ -816,7 +814,7 @@
               "id": "108ba2e6-ace7-4f1e-acb4-b95d0905b85a",
               "type": "basic.code",
               "data": {
-                "code": "/***********************************************************************\n\n  SPI Master\n\n  This file is part FPGA Libre project http://fpgalibre.sf.net/\n\n  Description:\n  Configurable Master Serial Protocol Interface controller.\n  This is different than SPI_controller:\n  - Modes can be configured with signals, not just generics.\n  - The SS logic is left to the upper level.\n  - We always return to IDLE before transmitting again.\n  - IMPORTANT! assumes that start_i resets the ena_i generator. In\n    this way start_i can last 1 clock cycle (no need to wait for\n    busy_o to become 1).\n\n  To Do:\n  -\n\n  Author:\n    - Salvador E. Tropea, salvador en inti gob ar\n\n------------------------------------------------------------------------------\n\n Copyright (c) 2017 Salvador E. Tropea <salvador en inti gob ar>\n Copyright (c) 2017 Instituto Nacional de Tecnología Industrial\n\n Distributed under the GPL v2 or newer license\n\n------------------------------------------------------------------------------\n\n Design unit:      SPI_Master(RTL) (Entity and architecture)\n File name:        spi_master.v\n Note:             None\n Limitations:      None known\n Errors:           None known\n Library:          None\n Dependencies:     IEEE.std_logic_1164\n                   IEEE.numeric_std\n Target FPGA:\n Language:         Verilog\n Wishbone:         None\n Synthesis tools:\n Simulation tools: GHDL [Sokcho edition] (0.2x)\n Text editor:      SETEdit 0.5.x\n\n***********************************************************************/\nlocalparam integer CNT_BITS=$clog2(DATA_W);\nlocalparam IDLE=0, LEADING_SCLK=1, TRAILING_SCLK=2, STOP=3; // state_t\n\nreg  [DATA_W-1:0] reg_r=0;\nreg  sclk_r=0;\nwire  sclk_o=0;\nreg  [CNT_BITS-1:0] bit_cnt=0;\nreg  [1:0] state=IDLE; // states for shifter_FSM.\nreg  miso_r; // Sampled MISO\nreg  irq_o;\n\nalways @(posedge clk_i)\nbegin : shifter_FSM\n  if (rst_i)\n     begin\n     state  <= IDLE;\n     sclk_r <= 0;\n     irq_o  <= 0;\n     end\n  else\n     begin\n     if (ack_i)\n        irq_o <= 0;\n     case (state)\n        IDLE:\n          if (start_i) // init transaction\n             begin\n             state   <= LEADING_SCLK;\n             reg_r   <= tx_i;\n             bit_cnt <= 0;\n             end\n        LEADING_SCLK:\n          if (ena_i)\n             begin\n             state  <= TRAILING_SCLK;\n             sclk_r <= !sclk_r;\n             if (!cpha_i) // Leading sample\n                miso_r <= miso_i;\n             end\n        TRAILING_SCLK:\n          if (ena_i)\n             begin\n             sclk_r <= !sclk_r;\n             if (bit_cnt==DATA_W-1)\n                begin\n                state <= STOP;\n                bit_cnt <= 0;\n                end\n             else\n                begin\n                state <= LEADING_SCLK;\n                bit_cnt <= bit_cnt+1;\n                end\n             if (cpha_i) // Leading sample\n                miso_r <= miso_i;\n             end\n        default: // STOP\n          // Maintain the last bit for half the clock to finish\n          // If we don't do it we could violate the slave hold time\n          if (ena_i)\n             begin\n             irq_o <= 1;\n             state <= IDLE;\n             end\n     endcase\n     // Shift in cases\n     if (ena_i)\n        if (  (state==TRAILING_SCLK && !cpha_i) ||\n            (((state==LEADING_SCLK && bit_cnt) || state==STOP) && cpha_i))\n           begin\n           // Shift\n           if (dord_i)\n              // Right\n              reg_r <= {miso_r,reg_r[DATA_W-1:1]};\n           else\n              // Left\n              reg_r <= {reg_r[DATA_W-2:0],miso_r};\n           end\n     end // !rst_i\nend // shifter_FSM\n\n// The FSM generates CPOL=0, if CPOL is 1 we just invert\nassign sclk_o=clk_i;\n// MOSI takes the LSB or MSB according to DORD\nassign mosi_o=dord_i ? reg_r[0] : reg_r[DATA_W-1];\nassign mosi_en_o=state!=IDLE;\nassign rx_o=reg_r;\nassign busy_o=state!=IDLE;\n",
+                "code": "/***********************************************************************\n\n  SPI Master\n\n  This file is part FPGA Libre project http://fpgalibre.sf.net/\n\n  Description:\n  Configurable Master Serial Protocol Interface controller.\n  This is different than SPI_controller:\n  - Modes can be configured with signals, not just generics.\n  - The SS logic is left to the upper level.\n  - We always return to IDLE before transmitting again.\n  - IMPORTANT! assumes that start_i resets the ena_i generator. In\n    this way start_i can last 1 clock cycle (no need to wait for\n    busy_o to become 1).\n\n  To Do:\n  -\n\n  Author:\n    - Salvador E. Tropea, salvador en inti gob ar\n\n------------------------------------------------------------------------------\n\n Copyright (c) 2017 Salvador E. Tropea <salvador en inti gob ar>\n Copyright (c) 2017 Instituto Nacional de Tecnología Industrial\n\n Distributed under the GPL v2 or newer license\n\n------------------------------------------------------------------------------\n\n Design unit:      SPI_Master(RTL) (Entity and architecture)\n File name:        spi_master.v\n Note:             None\n Limitations:      None known\n Errors:           None known\n Library:          None\n Dependencies:     IEEE.std_logic_1164\n                   IEEE.numeric_std\n Target FPGA:\n Language:         Verilog\n Wishbone:         None\n Synthesis tools:\n Simulation tools: GHDL [Sokcho edition] (0.2x)\n Text editor:      SETEdit 0.5.x\n\n***********************************************************************/\n//localparam integer CNT_BITS=$clog2(DATA_W);\nlocalparam integer CNT_BITS=3;\nlocalparam IDLE=0, LEADING_SCLK=1, TRAILING_SCLK=2, STOP=3; // state_t\n\nreg  [DATA_W-1:0] reg_r=0;\nreg  sclk_r=0;\nwire  sclk_o=0;\nreg  [CNT_BITS-1:0] bit_cnt=0;\nreg  [1:0] state=IDLE; // states for shifter_FSM.\nreg  miso_r; // Sampled MISO\nreg  irq_o;\n\nalways @(posedge clk_i)\nbegin : shifter_FSM\n  if (rst_i)\n     begin\n     state  <= IDLE;\n     sclk_r <= 0;\n     irq_o  <= 0;\n     end\n  else\n     begin\n     if (ack_i)\n        irq_o <= 0;\n     case (state)\n        IDLE:\n          if (start_i) // init transaction\n             begin\n             state   <= LEADING_SCLK;\n             reg_r   <= tx_i;\n             bit_cnt <= 0;\n             end\n        LEADING_SCLK:\n          if (ena_i)\n             begin\n             state  <= TRAILING_SCLK;\n             sclk_r <= !sclk_r;\n             if (!cpha_i) // Leading sample\n                miso_r <= miso_i;\n             end\n        TRAILING_SCLK:\n          if (ena_i)\n             begin\n             sclk_r <= !sclk_r;\n             if (bit_cnt==DATA_W-1)\n                begin\n                state <= STOP;\n                bit_cnt <= 0;\n                end\n             else\n                begin\n                state <= LEADING_SCLK;\n                bit_cnt <= bit_cnt+1;\n                end\n             if (cpha_i) // Leading sample\n                miso_r <= miso_i;\n             end\n        default: // STOP\n          // Maintain the last bit for half the clock to finish\n          // If we don't do it we could violate the slave hold time\n          if (ena_i)\n             begin\n             irq_o <= 1;\n             state <= IDLE;\n             end\n     endcase\n     // Shift in cases\n     if (ena_i)\n        if (  (state==TRAILING_SCLK && !cpha_i) ||\n            (((state==LEADING_SCLK && bit_cnt) || state==STOP) && cpha_i))\n           begin\n           // Shift\n           if (dord_i)\n              // Right\n              reg_r <= {miso_r,reg_r[DATA_W-1:1]};\n           else\n              // Left\n              reg_r <= {reg_r[DATA_W-2:0],miso_r};\n           end\n     end // !rst_i\nend // shifter_FSM\n\n// The FSM generates CPOL=0, if CPOL is 1 we just invert\nassign sclk_o=clk_i;\n// MOSI takes the LSB or MSB according to DORD\nassign mosi_o=dord_i ? reg_r[0] : reg_r[DATA_W-1];\nassign mosi_en_o=state!=IDLE;\nassign rx_o=reg_r;\nassign busy_o=state!=IDLE;\n",
                 "params": [
                   {
                     "name": "DATA_W"
