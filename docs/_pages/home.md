@@ -8,7 +8,7 @@ header:
     #- label: "<i class='fas fa-download'></i> Install now"
     #  url: "/installation/"
 excerpt: 
-  Write your doc title here
+  FPGA Robots, computer vision
 feature_row:
   - image_path: /assets/images/cover/logbook.jpg
     alt: "Logbook"
@@ -38,14 +38,8 @@ youTube_id: ID7qaEcIu4k
 
 {% include feature_row %}
 
-Hello, everybody.
 
-You can write an introduction about the work you are going to do, links, something about yourself, etc.
-
-In the `README.md` file at the root of the project are the steps to replicate the Minimal mistakes template on your local machine. This way you don't need to upload it to GitHub to be represented until it's ready.
-
-Uploading content to GitHub automatically displays your documentation in the link with a structure of the type:
 
 ```
-https://github_user_name.github.io/repository_name/
+https://github.com/RoboticsLabURJC/2017-tfg-richard-nicklas
 ```

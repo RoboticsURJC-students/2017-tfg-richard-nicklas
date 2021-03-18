@@ -1,5 +1,5 @@
 ---
-title: "GPG Distance Sensor"
+title: "GPG3 Distance Sensor"
 excerpt: "Testing distance sensor"
 
 sidebar:
@@ -26,20 +26,20 @@ pinned: false
 ## GPG Testing Distance Sensor
 
 Testing GoPiGo's Distance Sensor which uses a small laser to determine the distance to an object. The sensor uses the Time of Flight method for a very fast and accurate distance reading.
-I programmed a simple python script to test the sensor capabilities and also developed a simple "bump n go" algorithm.
+I programmed a python script to test the sensor capabilities and also developed a simple "bump n go" algorithm, code can be found [here](https://github.com/RoboticsLabURJC/2017-tfg-richard-nicklas/tree/master/GPG3/raspberry/PYTHON)
 
 
 # Test
 
-<iframe width="420" height="315" src="https://youtu.be/Tjxwd8zhaVg" frameborder="0" allowfullscreen></iframe>
+<iframe width="420" height="315" src="https://youtu.be/Tjxwd8zhaVg" frameborder="0" allowfullscreen> </iframe>
 
 
 
 # Bump N Go
 
-<iframe width="420" height="315" src="https://youtu.be/keo7stQvjp4" frameborder="0" allowfullscreen></iframe>
+<iframe width="420" height="315" src="https://youtu.be/keo7stQvjp4" frameborder="0" allowfullscreen> </iframe>
 
 
-#FPGA (LEDs still pending)
+# FPGA (LEDs still pending)
 
 Still havent figured out whats wrong with my IceStudio module, Felipe also couln't fix the problem. I'll have to contact IceStudio support/developers to finally fix this issue or maybe figure a different approach to test my SPI LED verilog module. 
