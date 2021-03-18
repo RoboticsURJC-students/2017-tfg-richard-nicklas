@@ -29,7 +29,7 @@ Testing GoPiGo's Distance Sensor which uses a small laser to determine the dista
 I programmed a simple python script to test the sensor capabilities and also developed a simple "bump n go" algorithm.
 
 
-#Test
+# Test
 
 <iframe width="420" height="315" src="https://youtu.be/Tjxwd8zhaVg" frameborder="0" allowfullscreen></iframe>
 

@@ -1,5 +1,5 @@
 ---
-title: "SPI GPG3 LED"
+title: "GPG3 SPI LED"
 excerpt: "SPI module for icestudio"
 
 sidebar:
@@ -25,7 +25,14 @@ pinned: false
 
 ## GPG Custom Testing 
 
-The last two weeks I've succesfully tested the drivers for the GoPiGo3 with a simple C++ program that activated the GPG3 LEDs and motors. Next step will be testing IR capabilities but I'm currently missing the necessary HW for this, the available sensor is based on a small laser to determine the distance to an object. The sensor uses the Time of Flight method(https://www.st.com/content/ccc/resource/technical/document/datasheet/group3/b2/1e/33/77/c6/92/47/6b/DM00279086/files/DM00279086.pdf/jcr:content/translations/en.DM00279086.pdf) for a very fast and accurate distance reading but isn't compatible to the already developed IR FPGA Modules that we intend to use in this project. 
+The last two weeks I've succesfully tested the drivers for the GoPiGo3 with a simple C++ program that activated the GPG3 LEDs and motors.
+
+# LEDs and Motor Test
+
+<iframe width="420" height="315" src="https://youtu.be/9ulQht3CAqE" frameborder="0" allowfullscreen></iframe>
+
+
+ Next step will be testing IR capabilities but I'm currently missing the necessary HW for this, the available sensor is based on a small laser to determine the distance to an object. The sensor uses the ToF method(https://www.st.com/content/ccc/resource/technical/document/datasheet/group3/b2/1e/33/77/c6/92/47/6b/DM00279086/files/DM00279086.pdf/jcr:content/translations/en.DM00279086.pdf) for a fast and accurate distance reading but isn't compatible to the already developed IR FPGA Modules that we intend to use in this project. 
 
 # FPGA
 
