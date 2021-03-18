@@ -13,10 +13,9 @@ toc_icon: "cog"
 categories:
 - your category
 tags:
-- tag 1
-- tag 2
-- tag 3
-- tag 4
+- GPG
+- video
+
 
 author: R. Nicklas
 pinned: false
@@ -31,14 +30,11 @@ I programmed a python script to test the sensor capabilities and also developed 
 
 # Test
 
-<iframe width="420" height="315" src="https://youtu.be/Tjxwd8zhaVg" frameborder="0" allowfullscreen> </iframe>
-
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Tjxwd8zhaVg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 # Bump N Go
 
-<iframe width="420" height="315" src="https://youtu.be/keo7stQvjp4" frameborder="0" allowfullscreen> </iframe>
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/keo7stQvjp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 # FPGA (LEDs still pending)
 
