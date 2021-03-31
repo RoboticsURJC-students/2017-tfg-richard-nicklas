@@ -32,10 +32,16 @@ I programmed a python script to test the sensor capabilities and also developed 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Tjxwd8zhaVg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+
+
+
 # Bump N Go
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/keo7stQvjp4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+
+
+
 # FPGA (LEDs still pending)
 
-Still havent figured out whats wrong with my IceStudio module, Felipe also couln't fix the problem. I'll have to contact IceStudio support/developers to finally fix this issue or maybe figure a different approach to test my SPI LED verilog module. 
+Still havent figured out whats wrong with my IceStudio module. I'll have to contact IceStudio support/developers to finally fix this issue or maybe figure a different approach to test my SPI LED verilog module. 
