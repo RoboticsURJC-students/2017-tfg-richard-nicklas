@@ -57,23 +57,31 @@ module color_proc
 
   reg [c_nb_img_pxls-1:0]  cnt_pxl;
   reg [c_nb_img_pxls-1:0]  cnt_pxl_proc;
-  reg [7:0] r_leds = 8'b11111111;
+  reg [7:0] r_leds;
 
   wire end_pxl_cnt;
+  wire end_ln;
+  wire tmpw;
 
   parameter  BLACK_PXL = {c_nb_img_pxls{1'b0}};
 
+//array de 80 en el que cada indice tendre el numero de pixeles coloreados,
+// indice con el valor mayor, luegom eso representa un octante.
 
 
-  reg [11:0] col1;
-  reg [11:0] col2;
-  //reg [7:0] leds;
+//filtro mas led. 
 
+
+  reg [5:0] histograma [79:0];
+
+
+  integer col;
+  integer prev_high;
+  integer i; 
+  integer j; 
   integer px_pos;
 
-  //col with the highest value
-  reg current_leader;
-
+  integer tmp;
 
   // memory address count
   always @ (posedge rst, posedge clk)
@@ -81,11 +89,7 @@ module color_proc
     if (rst) begin
       cnt_pxl <= 0;
       cnt_pxl_proc <= 0;
-      proc_we <= 1'b0;
-      col1 <= 0;
-      col2 <= 0;    
-      //r_leds <= 0;    
-      //current_leader <= 0; 
+      proc_we <= 1'b0;    
     end
     else begin
       proc_we <= 1'b1;
@@ -93,8 +97,7 @@ module color_proc
       cnt_pxl_proc <= cnt_pxl;
       if (end_pxl_cnt ) begin
         cnt_pxl <= 0;
-        col1 <= 0;
-        col2 <= 0;     
+        prev_high <= 0;
       end
       else
         cnt_pxl <= cnt_pxl + 1;
@@ -105,36 +108,107 @@ module color_proc
   assign orig_addr = cnt_pxl;
   assign proc_addr = cnt_pxl_proc;
 
+  //wire para contar hasta 80
+  assign end_ln = (px_pos == c_img_cols-1)? 1'b1 : 1'b0;
+  //aqui intento hacer la comprobacion para asignar un nuevo maximo a prev_high
+  assign tmpw = (prev_high < histograma[px_pos])? 1'b1 : 1'b0;
 
 
-
-  always @ (orig_pxl, rgbfilter) 
+//Contador hasta 80 
+always @ (posedge clk, posedge rst) 
   begin
-    if (orig_pxl[c_msb_red]) begin 
-      px_pos = cnt_pxl_proc;
-      if ((px_pos % c_img_cols)<40) begin
-        col1 <= col1 +1;
-      end
-      else begin
-        col2 <= col2 +1;
-      end
-    end
-  end
-
-  always @ (clk) 
-  begin
-    if (col1>col2) begin
-      current_leader <= 1'b1;
+    if (rst) begin   
+      px_pos <=0;
+    end 
+    else if (end_ln) begin
+      px_pos <= 0;
     end
     else begin
-      current_leader <= 1'b1;
-    end
-    //r_leds <= {current_leader ,7'b0001111};
-    r_leds <= 8'b11111111;
+      px_pos <= px_pos +1;
+    end 
+end
 
+//según col pintamos LEDs
+always @ (posedge clk, posedge rst) 
+begin
+  if (rst) begin   
+    r_leds <= 8'b00000000; 
+  end
+  else begin
+    if (col < 39) begin
+      r_leds <= 8'b11100000;
+    end      
+    else begin
+      r_leds <= 8'b00000111;     
+    end 
+  end
+end
+
+//histograma almacena los pixeles rojos en cada columna, se resetea cada imagen
+always @ (posedge clk, posedge rst) 
+begin
+  if (rst) begin  
+    for(i=0;i<=79;i=i+1) begin
+      histograma[i] <= 0;      
+    end
+  end 
+  else if (end_pxl_cnt) begin
+    for(i=0;i<=79;i=i+1) begin
+      histograma[i] <= 0;      
+    end
+  end
+  else begin
+    if (orig_pxl[c_msb_red]) begin 
+      //histograma[px_pos] <= histograma[px_pos] + 1;
+      histograma[px_pos] <= 1;
+    end
+  end
+end
+
+//Si prev_high < el valor actual del histograma (tmpw) asignamos el nuevo maximo
+// y guardamos la columna en col
+
+  always @ (posedge clk, posedge rst) 
+  begin
+    if (rst) begin   
+      prev_high <=0;
+      col <=0;
+    end      
+    else if(tmpw) begin
+        prev_high <= histograma[px_pos];
+        col <= px_pos;
+     end 
   end
 
-  //assign leds = 8'b11111111;//r_leds;
+
+
+    /*
+    if (col < 9) begin
+      r_leds <= 8'b10000000;
+    end
+    else if (col <19) begin
+      r_leds <= 8'b01000000;
+    end      
+    else if (col <29) begin
+      r_leds <= 8'b00100000;
+    end
+    else if (col <39) begin
+      r_leds <= 8'b00010000;
+    end      
+    else if (col <49) begin
+      r_leds <= 8'b00001000;
+    end      
+    else if (col <59) begin   
+      r_leds <= 8'b00000100;
+    end    
+    else if (col <69) begin
+      r_leds <= 8'b00000010;
+    end      
+    else begin
+      r_leds <= 8'b00000001;     
+    end     
+    */ 
+
   assign leds = r_leds;
 
   always @ (orig_pxl, rgbfilter) // should include RGB mode
