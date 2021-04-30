@@ -9,7 +9,8 @@ module top_spi_leds
     input  miso_i,
     //output mosi_en_o, 
     output mosi_o,
-    output ssb
+    output ssb,
+    output rpi_running  // 1 when running, to inform gopigo
    );
 
   wire       busy_spi;
@@ -21,6 +22,8 @@ module top_spi_leds
   wire       cpol = 1'b0;
   wire       dord = 1'b0;
   wire       cpha = 1'b0;
+
+  assign rpi_running = ~rst;
 
   spi_ledctrl i_spi_ledctrl
   (
@@ -58,7 +61,7 @@ module top_spi_leds
     // SPI
     .sclk_o     (sclk_o), 
     .miso_i     (miso_i),
-    //mosi_en_o  (mosi_en_o), 
+    //.mosi_en_o  (ssb), 
     .mosi_o     (mosi_o)
    );
 
