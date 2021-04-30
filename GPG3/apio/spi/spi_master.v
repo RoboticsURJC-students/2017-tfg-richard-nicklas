@@ -91,6 +91,7 @@ begin : shifter_FSM
      state  <= IDLE;
      sclk_r <= 0;
      irq_o  <= 0;
+     miso_r <= 1'b0;
      end
   else
      begin
@@ -158,7 +159,7 @@ end // shifter_FSM
 assign sclk_o=sclk_r^cpol_i;
 // MOSI takes the LSB or MSB according to DORD
 assign mosi_o=dord_i ? reg_r[0] : reg_r[DATA_W-1];
-assign mosi_en_o=state!=IDLE;
+assign mosi_en_o=state==IDLE; //cambio Felipe
 assign rx_o=reg_r;
 assign busy_o=state!=IDLE;
 
