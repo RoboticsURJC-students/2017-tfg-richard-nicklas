@@ -97,7 +97,6 @@ module color_proc
       cnt_pxl_proc <= cnt_pxl;
       if (end_pxl_cnt ) begin
         cnt_pxl <= 0;
-        prev_high <= 0;
       end
       else
         cnt_pxl <= cnt_pxl + 1;
@@ -111,7 +110,7 @@ module color_proc
   //wire para contar hasta 80
   assign end_ln = (px_pos == c_img_cols-1)? 1'b1 : 1'b0;
   //aqui intento hacer la comprobacion para asignar un nuevo maximo a prev_high
-  assign tmpw = (prev_high < histograma[px_pos])? 1'b1 : 1'b0;
+
 
 
 //Contador hasta 80 
@@ -144,7 +143,8 @@ begin
   end
 end
 
-//histograma almacena los pixeles rojos en cada columna, se resetea cada imagen
+//reg [5:0] histograma [79:0];
+//histograma almacena los pixeles rojos en cada columna, se resetea cada frame
 always @ (posedge clk, posedge rst) 
 begin
   if (rst) begin  
@@ -159,11 +159,14 @@ begin
   end
   else begin
     if (orig_pxl[c_msb_red]) begin 
-      //histograma[px_pos] <= histograma[px_pos] + 1;
-      histograma[px_pos] <= 1;
+      histograma[px_pos] <= histograma[px_pos] + 1;
+    //  histograma[px_pos] <= 1;
     end
   end
 end
+
+
+  assign tmpw = (prev_high < histograma[px_pos])? 1'b1 : 1'b0;
 
 //Si prev_high < el valor actual del histograma (tmpw) asignamos el nuevo maximo
 // y guardamos la columna en col
