@@ -1,6 +1,6 @@
 ---
-title: "GPG3 Distance Sensor"
-excerpt: "Testing distance sensor"
+title: "Red Ball Detection"
+excerpt: "FPGA verilog module that display the position of a red object"
 
 sidebar:
   nav: "docs"
@@ -30,7 +30,7 @@ Still unsuccesfull attempts, will upload a video update when I finally manage to
 
 # Not working (yet)
 
-<iframe width="560" height="315" src="https://youtu.be/Yhpr_3mv3ZE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Yhpr_3mv3ZE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 I'm starting to use [apio](https://github.com/FPGAwars/apio) to handle verilog code compilation and uploads to the fpga, it's a little bit more straight forward than IceStudio's visual interface. 
