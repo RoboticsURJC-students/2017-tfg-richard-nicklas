@@ -24,7 +24,7 @@ pinned: false
 
 ## GPG Testing Distance Sensor
 
-Trying to develop an FPGA verilog module that display the position of a red object in the camera frame via LEDs, code can be found [here](https://github.com/RoboticsLabURJC/2017-tfg-richard-nicklas/tree/master/GPG3/ICESTUDIO/RBallDetect_V)
+Trying to develop an FPGA verilog module that display the position of a red object in the camera frame via LEDs, code can be found [here](https://github.com/RoboticsLabURJC/2017-tfg-richard-nicklas/tree/master/GPG3/ICESTUDIO/RBallDetect_POC)
 
 Still unsuccesfull attempts, will upload a video update when I finally manage to make it work. 
 
