@@ -23,7 +23,7 @@ pinned: false
 ---
 
 
-## GPG Testing Distance Sensor
+## Filtered Color Detection
 
 Finally managed to make it work, code can be found [here](https://github.com/RoboticsLabURJC/2017-tfg-richard-nicklas/tree/master/GPG3/ICESTUDIO/RBallDetect_POC), this repo contains 4 main modules: Camera, ColorFilter/ObjectDetection, LED Display and VGA Display.
 
