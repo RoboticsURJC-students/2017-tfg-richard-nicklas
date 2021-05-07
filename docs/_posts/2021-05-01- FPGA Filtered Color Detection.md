@@ -35,14 +35,12 @@ pinned: false
 ## Filtered Color Detection
 
 Finally managed to make it work, code can be found [here](https://github.com/RoboticsLabURJC/2017-tfg-richard-nicklas/tree/master/GPG3/ICESTUDIO/RBallDetect_POC), this repo contains 4 main modules: Camera, ColorFilter/ObjectDetection, LED Display and VGA Display.
-![Alt text](/assets/images/RBallDetect.PNG "Red Object Detection")
 
 # It works
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ioeNptRcPDY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 
-![Alt text](/assets/images/CustomDetect.PNG "Custom Object Detection")
-
+{% include gallery caption=" Diagram " %}
 
 A reduced and improved example can be found [here](https://github.com/RoboticsLabURJC/2017-tfg-richard-nicklas/tree/master/GPG3/ICESTUDIO/RBallDetect), with 4 main modules: Camera, ColorFilter, ObjectDetection and LED Display. In this module the Object Detection work on the configured color Filter (Button 2)
