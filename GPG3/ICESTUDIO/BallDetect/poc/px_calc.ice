@@ -298,7 +298,7 @@
           "id": "97799322-784d-4ee9-b3fb-ed244f91a0f3",
           "type": "basic.code",
           "data": {
-            "code": "// @include px_calc.v\n\n    px_calc lnk2vrlg\n  (\n     .rst        (rst),\n     .clk        (clk),\n     .rgbfilter  (rgbfilter),\n     // from original image filter\n     .proc_addr  (proc_img_addr),\n     .orig_pxl   (orig_px),\n     .leds (leds)\n  );",
+            "code": "// @include px_calc.v\n\n    px_calc lnk2vrlg\n  (\n     .rst        (rst),\n     .clk        (clk),\n     .rgbfilter  (rgbfilter),\n     // from original image filter\n     .proc_addr  (img_addr),\n     .orig_pxl   (orig_px),\n     .leds (leds)\n  );",
             "params": [],
             "ports": {
               "in": [
