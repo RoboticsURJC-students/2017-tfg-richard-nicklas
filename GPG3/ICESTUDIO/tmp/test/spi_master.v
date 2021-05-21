@@ -64,9 +64,6 @@ module SPI_Master
     output reg irq_o,
     input  ack_i,  // IRQ Ack
     // Mode options
-    input  cpol_i,  // SCK value for idle
-    input  dord_i,  // 1 LSB first
-    input  cpha_i,  // 1 Trailing sample
     // SPI
     output sclk_o, 
     input  miso_i,
@@ -84,6 +81,13 @@ reg  sclk_r=0;
 reg  [CNT_BITS-1:0] bit_cnt=0;
 reg  [1:0] state=IDLE; // states for shifter_FSM.
 reg  miso_r; // Sampled MISO
+
+
+    wire  cpol_i;  // SCK value for idle
+    wire  dord_i;  // 1 LSB first
+    wire  cpha_i;  // 1 Trailing sample
+
+
 
 always @(posedge clk_i)
 begin : shifter_FSM
@@ -155,6 +159,12 @@ begin : shifter_FSM
            end
      end // !rst_i
 end // shifter_FSM
+
+assign  cpol_i = 1'b0;  // SCK value for idle
+assign  dord_i = 1'b0;  // 1 LSB first
+assign cpha_i = 1'b0;
+
+
 
 // The FSM generates CPOL=0, if CPOL is 1 we just invert
 assign sclk_o=sclk_r^cpol_i;

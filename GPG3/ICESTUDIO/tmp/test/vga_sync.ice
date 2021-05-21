@@ -1,10 +1,10 @@
 {
   "version": "1.2",
   "package": {
-    "name": "",
-    "version": "",
-    "description": "",
-    "author": "",
+    "name": "vga_sync",
+    "version": "0.1",
+    "description": "VGA synch 640x480 input clock 100MHz",
+    "author": "Felipe Machado",
     "image": ""
   },
   "design": {
@@ -12,7 +12,26 @@
     "graph": {
       "blocks": [
         {
-          "id": "32b04c37-7c66-48d4-a613-58414418f743",
+          "id": "c7fd3e9c-b755-4b02-b528-6565bd3ab584",
+          "type": "basic.output",
+          "data": {
+            "name": "vga_visible",
+            "pins": [
+              {
+                "index": "0",
+                "name": "",
+                "value": ""
+              }
+            ],
+            "virtual": true
+          },
+          "position": {
+            "x": 848,
+            "y": 208
+          }
+        },
+        {
+          "id": "d7825011-3784-499f-8f78-848daff1f218",
           "type": "basic.input",
           "data": {
             "name": "rst",
@@ -27,15 +46,72 @@
             "clock": false
           },
           "position": {
-            "x": 64,
-            "y": 56
+            "x": 200,
+            "y": 248
           }
         },
         {
-          "id": "8e6dcac8-2ba1-4aa2-9de2-d3d91aa8430c",
+          "id": "a9032c47-02cb-4b95-8d7a-306e60406c29",
+          "type": "basic.output",
+          "data": {
+            "name": "vga_new_pxl",
+            "pins": [
+              {
+                "index": "0",
+                "name": "",
+                "value": ""
+              }
+            ],
+            "virtual": true
+          },
+          "position": {
+            "x": 848,
+            "y": 248
+          }
+        },
+        {
+          "id": "b93e7441-b87e-4252-805e-dbc29a63add8",
+          "type": "basic.output",
+          "data": {
+            "name": "vga_hsync",
+            "pins": [
+              {
+                "index": "0",
+                "name": "",
+                "value": ""
+              }
+            ],
+            "virtual": true
+          },
+          "position": {
+            "x": 848,
+            "y": 288
+          }
+        },
+        {
+          "id": "339bdf97-c797-4b8d-bcd7-c9e073631869",
+          "type": "basic.output",
+          "data": {
+            "name": "vga_vsync",
+            "pins": [
+              {
+                "index": "0",
+                "name": "",
+                "value": ""
+              }
+            ],
+            "virtual": true
+          },
+          "position": {
+            "x": 848,
+            "y": 328
+          }
+        },
+        {
+          "id": "e87df823-810b-48be-bc92-7af912e59159",
           "type": "basic.input",
           "data": {
-            "name": "clk",
+            "name": "clk100mhz",
             "pins": [
               {
                 "index": "0",
@@ -47,48 +123,27 @@
             "clock": true
           },
           "position": {
-            "x": 48,
-            "y": 128
+            "x": 136,
+            "y": 368
           }
         },
         {
-          "id": "14009d89-4ad4-4feb-8b00-9e91968e4f5f",
-          "type": "basic.input",
-          "data": {
-            "name": "rgbfilter",
-            "range": "[2:0]",
-            "pins": [
-              {
-                "index": "2",
-                "name": "",
-                "value": ""
-              },
-              {
-                "index": "1",
-                "name": "",
-                "value": ""
-              },
-              {
-                "index": "0",
-                "name": "",
-                "value": ""
-              }
-            ],
-            "virtual": true,
-            "clock": false
-          },
-          "position": {
-            "x": 32,
-            "y": 208
-          }
-        },
-        {
-          "id": "de089ccc-38d7-47c2-ab35-7edffd23c943",
+          "id": "46e3647b-7b1f-4e75-970c-ad971d14b5ea",
           "type": "basic.output",
           "data": {
-            "name": "leds",
-            "range": "[7:0]",
+            "name": "vga_col",
+            "range": "[9:0]",
             "pins": [
+              {
+                "index": "9",
+                "name": "",
+                "value": ""
+              },
+              {
+                "index": "8",
+                "name": "",
+                "value": ""
+              },
               {
                 "index": "7",
                 "name": "",
@@ -133,32 +188,17 @@
             "virtual": true
           },
           "position": {
-            "x": 992,
-            "y": 216
+            "x": 848,
+            "y": 368
           }
         },
         {
-          "id": "31616483-d55a-466f-ae23-8e7bc62f39ac",
-          "type": "basic.input",
+          "id": "dc3cad4c-68e1-4247-9dfc-8a6a7f0429f1",
+          "type": "basic.output",
           "data": {
-            "name": "orig_img_addr",
-            "range": "[12:0]",
+            "name": "vga_row",
+            "range": "[9:0]",
             "pins": [
-              {
-                "index": "12",
-                "name": "",
-                "value": ""
-              },
-              {
-                "index": "11",
-                "name": "",
-                "value": ""
-              },
-              {
-                "index": "10",
-                "name": "",
-                "value": ""
-              },
               {
                 "index": "9",
                 "name": "",
@@ -210,95 +250,18 @@
                 "value": ""
               }
             ],
-            "virtual": true,
-            "clock": false
+            "virtual": true
           },
           "position": {
-            "x": -24,
-            "y": 264
+            "x": 848,
+            "y": 408
           }
         },
         {
-          "id": "7cc267e0-6765-4f45-b100-ffa7a5af15ae",
-          "type": "basic.input",
-          "data": {
-            "name": "orig_img_px",
-            "range": "[11:0]",
-            "pins": [
-              {
-                "index": "11",
-                "name": "",
-                "value": ""
-              },
-              {
-                "index": "10",
-                "name": "",
-                "value": ""
-              },
-              {
-                "index": "9",
-                "name": "",
-                "value": ""
-              },
-              {
-                "index": "8",
-                "name": "",
-                "value": ""
-              },
-              {
-                "index": "7",
-                "name": "",
-                "value": ""
-              },
-              {
-                "index": "6",
-                "name": "",
-                "value": ""
-              },
-              {
-                "index": "5",
-                "name": "",
-                "value": ""
-              },
-              {
-                "index": "4",
-                "name": "",
-                "value": ""
-              },
-              {
-                "index": "3",
-                "name": "",
-                "value": ""
-              },
-              {
-                "index": "2",
-                "name": "",
-                "value": ""
-              },
-              {
-                "index": "1",
-                "name": "",
-                "value": ""
-              },
-              {
-                "index": "0",
-                "name": "",
-                "value": ""
-              }
-            ],
-            "virtual": true,
-            "clock": false
-          },
-          "position": {
-            "x": 56,
-            "y": 328
-          }
-        },
-        {
-          "id": "97799322-784d-4ee9-b3fb-ed244f91a0f3",
+          "id": "bf281b20-4810-4198-be4f-463d409da391",
           "type": "basic.code",
           "data": {
-            "code": "// @include px_calc.v\n\n    px_calc lnk2vrlg\n  (\n     .rst        (rst),\n     .clk        (clk),\n     .rgbfilter  (rgbfilter),\n     // from original image filter\n     .proc_addr  (img_addr),\n     .orig_pxl   (orig_px),\n     .leds (leds)\n  );",
+            "code": "   // @include vga_sync.v\r\n   \r\n   vga_sync link_vrlg\r\n   (\r\n     .rst     (rst),\r\n     .clk     (clk100mhz),\r\n     .visible (vga_visible),\r\n     .new_pxl (vga_new_pxl),\r\n     .hsync   (vga_hsync),\r\n     .vsync   (vga_vsync),\r\n     .col     (vga_col),\r\n     .row     (vga_row)\r\n  );",
             "params": [],
             "ports": {
               "in": [
@@ -306,107 +269,127 @@
                   "name": "rst"
                 },
                 {
-                  "name": "clk"
-                },
-                {
-                  "name": "rgbfilter",
-                  "range": "[2:0]",
-                  "size": 3
-                },
-                {
-                  "name": "img_addr",
-                  "range": "[12:0]",
-                  "size": 13
-                },
-                {
-                  "name": "orig_px",
-                  "range": "[11:0]",
-                  "size": 12
+                  "name": "clk100mhz"
                 }
               ],
               "out": [
                 {
-                  "name": "leds",
-                  "range": "[7:0]",
-                  "size": 8
+                  "name": "vga_visible"
+                },
+                {
+                  "name": "vga_new_pxl"
+                },
+                {
+                  "name": "vga_hsync"
+                },
+                {
+                  "name": "vga_vsync"
+                },
+                {
+                  "name": "vga_col",
+                  "range": "[9:0]",
+                  "size": 10
+                },
+                {
+                  "name": "vga_row",
+                  "range": "[9:0]",
+                  "size": 10
                 }
               ]
             }
           },
           "position": {
-            "x": 328,
-            "y": 80
+            "x": 336,
+            "y": 216
           },
           "size": {
-            "width": 512,
-            "height": 328
+            "width": 424,
+            "height": 248
           }
         }
       ],
       "wires": [
         {
           "source": {
-            "block": "32b04c37-7c66-48d4-a613-58414418f743",
+            "block": "d7825011-3784-499f-8f78-848daff1f218",
             "port": "out"
           },
           "target": {
-            "block": "97799322-784d-4ee9-b3fb-ed244f91a0f3",
+            "block": "bf281b20-4810-4198-be4f-463d409da391",
             "port": "rst"
           }
         },
         {
           "source": {
-            "block": "8e6dcac8-2ba1-4aa2-9de2-d3d91aa8430c",
+            "block": "e87df823-810b-48be-bc92-7af912e59159",
             "port": "out"
           },
           "target": {
-            "block": "97799322-784d-4ee9-b3fb-ed244f91a0f3",
-            "port": "clk"
+            "block": "bf281b20-4810-4198-be4f-463d409da391",
+            "port": "clk100mhz"
           }
         },
         {
           "source": {
-            "block": "14009d89-4ad4-4feb-8b00-9e91968e4f5f",
-            "port": "out"
+            "block": "bf281b20-4810-4198-be4f-463d409da391",
+            "port": "vga_hsync"
           },
           "target": {
-            "block": "97799322-784d-4ee9-b3fb-ed244f91a0f3",
-            "port": "rgbfilter"
-          },
-          "size": 3
+            "block": "b93e7441-b87e-4252-805e-dbc29a63add8",
+            "port": "in"
+          }
         },
         {
           "source": {
-            "block": "7cc267e0-6765-4f45-b100-ffa7a5af15ae",
-            "port": "out"
+            "block": "bf281b20-4810-4198-be4f-463d409da391",
+            "port": "vga_visible"
           },
           "target": {
-            "block": "97799322-784d-4ee9-b3fb-ed244f91a0f3",
-            "port": "orig_px"
-          },
-          "size": 12
+            "block": "c7fd3e9c-b755-4b02-b528-6565bd3ab584",
+            "port": "in"
+          }
         },
         {
           "source": {
-            "block": "31616483-d55a-466f-ae23-8e7bc62f39ac",
-            "port": "out"
+            "block": "bf281b20-4810-4198-be4f-463d409da391",
+            "port": "vga_new_pxl"
           },
           "target": {
-            "block": "97799322-784d-4ee9-b3fb-ed244f91a0f3",
-            "port": "img_addr"
-          },
-          "size": 13
+            "block": "a9032c47-02cb-4b95-8d7a-306e60406c29",
+            "port": "in"
+          }
         },
         {
           "source": {
-            "block": "97799322-784d-4ee9-b3fb-ed244f91a0f3",
-            "port": "leds"
+            "block": "bf281b20-4810-4198-be4f-463d409da391",
+            "port": "vga_vsync"
           },
           "target": {
-            "block": "de089ccc-38d7-47c2-ab35-7edffd23c943",
+            "block": "339bdf97-c797-4b8d-bcd7-c9e073631869",
+            "port": "in"
+          }
+        },
+        {
+          "source": {
+            "block": "bf281b20-4810-4198-be4f-463d409da391",
+            "port": "vga_col"
+          },
+          "target": {
+            "block": "46e3647b-7b1f-4e75-970c-ad971d14b5ea",
             "port": "in"
           },
-          "size": 8
+          "size": 10
+        },
+        {
+          "source": {
+            "block": "bf281b20-4810-4198-be4f-463d409da391",
+            "port": "vga_row"
+          },
+          "target": {
+            "block": "dc3cad4c-68e1-4247-9dfc-8a6a7f0429f1",
+            "port": "in"
+          },
+          "size": 10
         }
       ]
     }
