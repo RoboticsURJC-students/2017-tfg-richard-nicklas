@@ -96,15 +96,15 @@
             "pins": [
               {
                 "index": "0",
-                "name": "",
-                "value": ""
+                "name": "D3",
+                "value": "3"
               }
             ],
             "virtual": false
           },
           "position": {
-            "x": 1160,
-            "y": -96
+            "x": 1064,
+            "y": -80
           }
         },
         {
@@ -1400,6 +1400,23 @@
             "block": "2bf9c84e-849f-480d-9827-f32aa956b001",
             "port": "in"
           }
+        },
+        {
+          "source": {
+            "block": "6c34015f-b145-4bcd-a6af-170eee5e79ca",
+            "port": "efb0f688-a19d-4dcd-9d1d-f13bfafbe8ed"
+          },
+          "target": {
+            "block": "2dc732a5-b189-4835-bd8b-81594ce2f640",
+            "port": "5e0b2249-1b3a-4247-bf01-86e0aec5c9e1"
+          },
+          "vertices": [
+            {
+              "x": -544,
+              "y": 880
+            }
+          ],
+          "size": 8
         }
       ]
     }
@@ -5843,10 +5860,66 @@
               }
             },
             {
+              "id": "5e0b2249-1b3a-4247-bf01-86e0aec5c9e1",
+              "type": "basic.input",
+              "data": {
+                "name": "cv_data",
+                "range": "[7:0]",
+                "pins": [
+                  {
+                    "index": "7",
+                    "name": "",
+                    "value": ""
+                  },
+                  {
+                    "index": "6",
+                    "name": "",
+                    "value": ""
+                  },
+                  {
+                    "index": "5",
+                    "name": "",
+                    "value": ""
+                  },
+                  {
+                    "index": "4",
+                    "name": "",
+                    "value": ""
+                  },
+                  {
+                    "index": "3",
+                    "name": "",
+                    "value": ""
+                  },
+                  {
+                    "index": "2",
+                    "name": "",
+                    "value": ""
+                  },
+                  {
+                    "index": "1",
+                    "name": "",
+                    "value": ""
+                  },
+                  {
+                    "index": "0",
+                    "name": "",
+                    "value": ""
+                  }
+                ],
+                "virtual": true,
+                "clock": false
+              },
+              "position": {
+                "x": -192,
+                "y": 568
+              }
+            },
+            {
               "id": "b4e7bdea-88b7-4a43-a26d-f3cde8c7a4e2",
               "type": "basic.code",
               "data": {
-                "code": "// @include spi_ledctrl.v\r\n\r\n  spi_ledctrl i_spi_ledctrl\r\n  (\r\n    .rst         (rst),\r\n    .clk         (clk),\r\n    //.MISO        (MISO),\r\n    //.data_flash  (data_flash),\r\n    .busy_spi    (busy_spi),\r\n    .leds        (leds),\r\n    //.SCLK        (SCLK),\r\n    //.MOSI        (MOSI),\r\n    .SSBar       (ssb),\r\n    .start       (start),\r\n    .ack         (ack),\r\n    .ena_2clk    (ena_2clk),\r\n    .data_spi    (data_spi)\r\n  );\r\n",
+                "code": "// @include spi_gpg_ctrl.v\r\n\r\n  spi_gpg_ctrl i_spi_gpg_ctrl\r\n  (\r\n    .rst         (rst),\r\n    .clk         (clk),\r\n    //.MISO        (MISO),\r\n    .cv_data  (cv_data),\r\n    .busy_spi    (busy_spi),\r\n    .leds        (leds),\r\n    //.SCLK        (SCLK),\r\n    //.MOSI        (MOSI),\r\n    .SSBar       (ssb),\r\n    .start       (start),\r\n    .ack         (ack),\r\n    .ena_2clk    (ena_2clk),\r\n    .data_spi    (data_spi)\r\n  );\r\n",
                 "params": [],
                 "ports": {
                   "in": [
@@ -5858,6 +5931,11 @@
                     },
                     {
                       "name": "busy_spi"
+                    },
+                    {
+                      "name": "cv_data",
+                      "range": "[7:0]",
+                      "size": 8
                     }
                   ],
                   "out": [
@@ -5986,6 +6064,17 @@
               "target": {
                 "block": "bbd54035-423d-4fa2-82ca-59b83d57b3e9",
                 "port": "in"
+              },
+              "size": 8
+            },
+            {
+              "source": {
+                "block": "5e0b2249-1b3a-4247-bf01-86e0aec5c9e1",
+                "port": "out"
+              },
+              "target": {
+                "block": "b4e7bdea-88b7-4a43-a26d-f3cde8c7a4e2",
+                "port": "cv_data"
               },
               "size": 8
             }

@@ -2,17 +2,20 @@
 
 //////////////////////////////////////////////////////////////////////////////////
 // 12MHz clock with 115200 baud
-// Este codigo vale para pegarlo directamente dentro de un modulo de ICESTUDIO, 
+//
 //TODO: adaptarlo a un modulo verilog de verdad.
 // 12MHz clock with 115200 baud
 
 // control module to send to SPI to turn on leds
-module spi_ledctrl
+module spi_gpg_ctrl
+#(
+  parameter DPS=512   // Speed ->h'200 ->b'1000000000
+)
 (
   input            rst,
   input            clk,
   //input            MISO,
-  //input      [7:0] data_flash,
+  input      [7:0] cv_data,
   input            busy_spi,
   output reg [7:0] leds,
   //output           SCLK, // not used
@@ -151,14 +154,16 @@ module spi_ledctrl
     data_spi <= 7'b00000000;
     leds     <= 7'b00000000;
 
-    /* tenemos que enviar todo esto para setear leds
-       spi_array_out[0] = Address;   //8
-       spi_array_out[1] = GPGSPI_MESSAGE_SET_LED; //6 (enum)
-       spi_array_out[2] = led; // 0x02
-       spi_array_out[3] = red; //1
-       spi_array_out[4] = green; //1
-       spi_array_out[5] = blue; //1
+
+    /* set_motor_dps
+      spi_array_out[0] = Address;                           -> 08
+      spi_array_out[1] = GPGSPI_MESSAGE_SET_MOTOR_DPS; //14 -> 0E
+      spi_array_out[2] = port;                              -> 1 LEFT 2 RIGHT 3 BOTH
+      spi_array_out[3] = ((dps >> 8) & 0xFF);   //dps= 1000->h'3E8->->b'1111101000 >> 8 = 0000000011 & 0xFF(11111111) = 3
+      spi_array_out[4] = (dps & 0xFF);
     */
+
+
     if (rst)
       SSBar <= 1'b1;
     case (counter)
@@ -170,53 +175,45 @@ module spi_ledctrl
       end
       6'd1: begin
         SSBar <= 1'b0;        // Activar el protocolo SPI en el esclavo (Bot).
-        data_spi <= 8'h08;    // direccion 8 del SPI
+        data_spi <= 8'h08;    // Address
         if (!busy_spi_rg) begin
           start <= 1'b1;
           leds[1] <= 1'b1;
         end
       end
       6'd2: begin
-        SSBar <= 1'b0;        // Activar el protocolo SPI en el esclavo (Bot).
-        data_spi <= 8'h06;    // comando encender leds
+        SSBar <= 1'b0;        // 
+        data_spi <= 8'h0E;    //LED --> 6 | MOTOR_DPS->14->h0E
         if (!busy_spi_rg) begin
           start <= 1'b1;
           leds[2] <= 1'b1;
         end
       end
       6'd3: begin
-        SSBar <= 1'b0;        // Activar el protocolo SPI en el esclavo (Bot).
-        data_spi <= 8'h04;    // set led left eye
+        SSBar <= 1'b0;        // 
+        data_spi <= 8'h03;    // Port
         if (!busy_spi_rg) begin
           start <= 1'b1;
           leds[3] <= 1'b1;
         end
       end
       6'd4: begin
-        SSBar <= 1'b0;        // Activar el protocolo SPI en el esclavo (Bot).
-        data_spi <= 8'h10;          
+        SSBar <= 1'b0;        
+        data_spi <= 8'h3;    // DPS-      
         if (!busy_spi_rg) begin
           start <= 1'b1;
           leds[4] <= 1'b1;
         end
       end
       6'd5: begin
-        SSBar <= 1'b0;        // Activar el protocolo SPI en el esclavo (Bot).
-        data_spi <= 8'h1F;         
+        SSBar <= 1'b0;        
+        data_spi <= 8'hE8;   //  1111101000 & 0xFF = 11101000 = E8      
         if (!busy_spi_rg) begin
           start <= 1'b1;
           leds[5] <= 1'b1;
         end
       end
       6'd6: begin
-        SSBar <= 1'b0;        // Activar el protocolo SPI en el esclavo (Bot).
-        data_spi <= 8'h1A;         
-        if (!busy_spi_rg) begin
-          start <= 1'b1;
-          leds[6] <= 1'b1;
-        end
-      end
-      6'd7: begin
         SSBar <= 1'b0;        // wait for the last byte to be sent
         data_spi <= 8'h00;         
         if (!busy_spi_rg) begin
@@ -225,7 +222,7 @@ module spi_ledctrl
         end
 
       end
-      6'd8: begin
+      6'd7: begin
         SSBar <= 1'b0;       // Desactivamos el esclavo una vez despierto (según sketch de S.E.Tropea para Lattuino).
         data_spi <= 8'h00;         
         if (!busy_spi_rg) begin
@@ -234,7 +231,7 @@ module spi_ledctrl
         end
         leds[2] <= 1'b1;
       end
-      6'd9: begin
+      6'd8: begin
         SSBar <= 1'b0;       // Desactivamos el esclavo una vez despierto (según sketch de S.E.Tropea para Lattuino).
 
         leds[2] <= 1'b1;

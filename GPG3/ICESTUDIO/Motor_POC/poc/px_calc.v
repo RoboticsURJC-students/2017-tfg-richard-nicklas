@@ -35,31 +35,11 @@ module px_calc
     output [7:0] leds
   );
 
-
-/*
-    input  [2:0]   rgbfilter, // color filter to be applied
-    // Address and pixel of original image
-    input  [c_nb_buf-1:0]      orig_pxl,  //pixel from original image
-    output [c_nb_img_pxls-1:0] orig_addr, //pixel mem address original img
-    // Address and pixel of processed image
-    output reg                 proc_we,  //write enable, to write processed pxl
-
-*/
-
-  reg [c_nb_img_pxls-1:0]  cnt_pxl;
-  reg [c_nb_img_pxls-1:0]  cnt_pxl_proc;
   reg [7:0] r_leds;
 
   wire end_pxl_cnt;
   wire end_ln;
   wire tmpw;
-
-
-//array de 80 en el que cada indice tendre el numero de pixeles coloreados,
-// indice con el valor mayor, luegom eso representa un octante.
-
-
-//filtro mas led. 
 
 
   reg [5:0] histograma [79:0];
@@ -72,26 +52,7 @@ module px_calc
 
   integer tmp;
 
-  // memory address count
-  always @ (posedge rst, posedge clk)
-  begin
-    if (rst) begin
-      cnt_pxl <= 0;
-      cnt_pxl_proc <= 0;   
-    end
-    else begin
-      // data from memory received a clock cycle later
-      cnt_pxl_proc <= cnt_pxl;
-      if (end_pxl_cnt ) begin
-        cnt_pxl <= 0;
-      end
-      else
-        cnt_pxl <= cnt_pxl + 1;
-    end
-  end
-
-  assign end_pxl_cnt = (cnt_pxl == c_img_pxls-1) ? 1'b1 : 1'b0;
-  assign proc_addr = cnt_pxl_proc;
+  assign end_pxl_cnt = (proc_addr == c_img_pxls-1) ? 1'b1 : 1'b0;
 
   //wire para contar hasta 80
   assign end_ln = (px_pos == c_img_cols-1)? 1'b1 : 1'b0;
