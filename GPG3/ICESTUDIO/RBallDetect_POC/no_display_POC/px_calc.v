@@ -29,8 +29,9 @@ module px_calc
     input          clk,       //fpga clock
     input  [2:0]   rgbfilter, // color filter to be applied
 
-    input [c_nb_buf-1:0]  orig_pxl, // processed pixel to be written
+
     input [c_nb_img_pxls-1:0] proc_addr, // address of processed pixel
+    input [c_nb_buf-1:0]  orig_pxl, // processed pixel to be written
 
     output [7:0] leds
   );
@@ -59,7 +60,7 @@ module px_calc
   //aqui intento hacer la comprobacion para asignar un nuevo maximo a prev_high
 
 
-//Contador hasta 80 
+//Contador hasta 80 (ancho de imagen)
 always @ (posedge clk, posedge rst) 
   begin
     if (rst) begin   

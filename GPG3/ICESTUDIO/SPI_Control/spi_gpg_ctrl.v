@@ -2,15 +2,24 @@
 
 //////////////////////////////////////////////////////////////////////////////////
 // 12MHz clock with 115200 baud
-// 
+//
+//TODO: adaptarlo a un modulo verilog de verdad.
+// 12MHz clock with 115200 baud
 
 // control module to send to SPI to turn on leds
-module spi_ledctrl
+module spi_gpg_ctrl
+#(
+  parameter DPS=512   // Speed ->h'200 ->b'1000000000
+)
 (
   input            rst,
   input            clk,
+  //input            MISO,
+  input      [7:0] cv_data,
   input            busy_spi,
   output reg [7:0] leds,
+  //output           SCLK, // not used
+  //output           MOSI, // not used
   output reg       SSBar,
   output reg       start,
   output reg       ack,
@@ -204,15 +213,6 @@ module spi_ledctrl
           leds[5] <= 1'b1;
         end
       end
-/*      6'd6: begin
-        SSBar <= 1'b0;        // A
-        data_spi <= 8'h1A;         
-        if (!busy_spi_rg) begin
-          start <= 1'b1;
-          leds[6] <= 1'b1;
-        end
-      end
-      */
       6'd6: begin
         SSBar <= 1'b0;        // wait for the last byte to be sent
         data_spi <= 8'h00;         
